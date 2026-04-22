@@ -1,0 +1,117 @@
+# ChessKG — An Intelligent Chess Knowledge Graph
+**Student:** Sankalp Dhupar (12543113)
+**Course:** Knowledge Graphs — TU Wien (Emanuel Sallinger, Markus Nissl, Aleksandar Pavlovic)
+**Mode:** 6 ECTS — Standard Track
+**Final Report:** ~6 pages (Portfolio format)
+
+---
+
+## Motivation & Problem
+
+Chess is one of the most documented games in history, yet its knowledge remains semantically
+shallow. Tools like ChessBase are powerful but operate as flat databases — they can filter
+games but cannot answer questions like:
+> *"Which opening will this player likely use given stylistic similarity to others?"*
+
+No semantically rich knowledge graph of chess exists that supports reasoning and prediction.
+
+---
+
+## Solution
+
+Build **ChessKG** from the Lichess open database: a knowledge graph of players, games, and
+openings that supports:
+- Semantic querying (SPARQL)
+- Logical inference (OWL/SHACL rules)
+- Learned link predictions (KG Embeddings)
+
+**Scope:** ~100k top-rated Lichess games — representative but manageable.
+
+---
+
+## Technical Stack
+
+| Component      | Tool                              |
+|----------------|-----------------------------------|
+| Data source    | Lichess open database (PGN)       |
+| KG Store       | GraphDB (free tier) / Apache Jena |
+| Embeddings     | PyKEEN (TransE + RotatE)          |
+| Logical layer  | OWL + SHACL (pySHACL)             |
+| API            | FastAPI (REST)                    |
+| Query          | SPARQL endpoint                   |
+
+---
+
+## Data Pipeline
+
+**Input → Process → Output**
+
+1. **Ingest** — Parse Lichess PGN files → convert to RDF triples (Turtle `.ttl`)
+2. **Enrich** — OWL/SHACL logical rules infer new facts
+   - e.g. *"Player wins with one opening in 60%+ of games → classified as Opening Specialist"*
+3. **Embed** — Train TransE/RotatE models for link prediction
+4. **Expose** — SPARQL endpoint + FastAPI REST service
+
+**RDF Nodes:** Players, Games, Openings (ECO codes), Tournaments
+**RDF Edges:** `played`, `usedOpening`, `resultedIn`, `hadElo`, `playedIn` (OTB vs Online)
+
+**Example triple (Turtle):**
+```turtle
+:Carlsen a :Player ;
+         :playedOpening :Sicilian ;
+         :eloRating 2850 .
+```
+
+---
+
+## Learning Outcomes
+
+| Level           | Topics                                                                                   |
+|-----------------|------------------------------------------------------------------------------------------|
+| 🔵 Deep Focus   | KG Embeddings (LO1), Logical Knowledge in KGs (LO2)                                     |
+| 🟡 Basic        | Data Models, Architectures, KG Creation, Scalable Reasoning, KG Evolution,              |
+|                 | Real-World Applications, Services, KG/AI/ML Connections                                  |
+| ❌ Dropped       | Graph Neural Networks (LO3)                                                              |
+| 💡 Light touch  | Financial KGs — via tournament prize money data only                                     |
+
+---
+
+## ChessBase vs ChessKG
+
+| Dimension          | ChessBase                        | ChessKG                              |
+|--------------------|----------------------------------|--------------------------------------|
+| Data model         | Flat proprietary format          | RDF/OWL ontology                     |
+| Querying           | Keyword/filter search            | SPARQL semantic queries              |
+| Reasoning          | None                             | OWL/SHACL (inferred facts)           |
+| Link prediction    | Not supported                    | KG Embeddings (TransE/RotatE)        |
+| Interoperability   | Closed ecosystem                 | Open RDF standard                    |
+
+---
+
+## 3-Month Timeline
+
+| Month              | Focus                                                                 |
+|--------------------|-----------------------------------------------------------------------|
+| Month 1 (Mar–Apr)  | Data modelling + KG creation — ingest PGN, build graph, define OWL ontology |
+| Month 2 (Apr–May)  | Logical rules + embeddings — OWL/SHACL rules, train TransE, evaluate link prediction |
+| Month 3 (May–Jun)  | Systems + API + write-up — SPARQL queries, KG evolution demo, REST service |
+
+---
+
+## Key Deadlines
+
+| Milestone             | Date                    |
+|-----------------------|-------------------------|
+| One-Pager proposal    | 31 March 2026 ✅        |
+| Portfolio (Standard)  | **30 June 2026**        |
+| Early Track option    | 16 June 2026            |
+| Extended Track option | 30 September 2026       |
+
+---
+
+## Open Tasks
+
+- [ ] Design the full OWL ontology schema
+- [ ] Finalize Lichess dataset slice (months/rating range)
+- [ ] Decide: GraphDB or Apache Jena?
+- [ ] Source OTB game data for online vs over-the-board comparison

@@ -1,0 +1,18 @@
+# Chess data files
+*.pgn
+*.json
+
+# Submodules / external tools
+lichess-pgn-to-json/
+Main DB/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
