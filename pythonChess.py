@@ -81,10 +81,42 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
 
     with open(pgn_path) as pgn:
 
-        # tqdm with unknown length (streaming file)
         pbar = tqdm(desc="Processing games")
 
         while len(games_data) < 1000:
+            # Fast header-only read to check filters before parsing moves
+            offset = pgn.tell()
+            headers = chess.pgn.read_headers(pgn)
+            if headers is None:
+                break
+
+            # --- header filters (no move parsing yet) ---
+            date_str = headers.get("Date", "").strip()
+            if not date_str or "?" in date_str:
+                continue
+            try:
+                if int(date_str.split(".")[0]) < 2010:
+                    continue
+            except ValueError:
+                continue
+
+            event = headers.get("Event", "").lower()
+            if not any(t in event for t in MAJOR_TOURNAMENTS):
+                continue
+
+            try:
+                white_elo = int(headers.get("WhiteElo", ""))
+                black_elo = int(headers.get("BlackElo", ""))
+            except (ValueError, TypeError):
+                continue
+            if not (2300 <= white_elo <= 3500) or not (2300 <= black_elo <= 3500):
+                continue
+
+            if headers.get("Result", "*") not in ("1-0", "0-1", "1/2-1/2"):
+                continue
+
+            # Headers passed — seek back and parse full game with moves
+            pgn.seek(offset)
             game = chess.pgn.read_game(pgn)
             if game is None:
                 break
@@ -93,40 +125,12 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             eco_code = headers.get("ECO", "")
             opening_name = opening_map.get(eco_code, eco_code)
 
-            event = headers.get("Event", "").lower()
-            if not any(t in event for t in MAJOR_TOURNAMENTS):
-                continue
-
             white = headers.get("White", "").strip()
             black = headers.get("Black", "").strip()
             if not white or not black or white == "?" or black == "?":
                 continue
 
-            # Skip missing or invalid date / must be after year 2000
-            date_str = headers.get("Date", "").strip()
-            if not date_str or "?" in date_str:
-                continue
-            try:
-                year = int(date_str.split(".")[0])
-            except ValueError:
-                continue
-            if year < 2010:
-                continue
-
-            # Skip missing or out-of-range ELO
-            try:
-                white_elo = int(headers.get("WhiteElo", ""))
-                black_elo = int(headers.get("BlackElo", ""))
-            except (ValueError, TypeError):
-                continue
-            if not (2000 <= white_elo <= 3500) or not (2000 <= black_elo <= 3500):
-                continue
-
-            # Skip unfinished/abandoned games
             result = headers.get("Result", "*")
-            if result not in ("1-0", "0-1", "1/2-1/2"):
-                continue
-
             termination = get_termination(game)
 
             moves = []
