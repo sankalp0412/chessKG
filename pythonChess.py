@@ -78,12 +78,16 @@ MAJOR_TOURNAMENTS = {
 
 def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]:
     games_data = []
+    from collections import defaultdict
+
+    year_counts = defaultdict(int)
+    YEAR_CAP = 20_000
 
     with open(pgn_path) as pgn:
 
         pbar = tqdm(desc="Processing games")
 
-        while len(games_data) < 1000:
+        while True:
             # Fast header-only read to check filters before parsing moves
             offset = pgn.tell()
             headers = chess.pgn.read_headers(pgn)
@@ -95,9 +99,12 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             if not date_str or "?" in date_str:
                 continue
             try:
-                if int(date_str.split(".")[0]) < 2010:
-                    continue
+                year = int(date_str.split(".")[0])
             except ValueError:
+                continue
+            if year < 2000 or year > 2023:
+                continue
+            if year_counts[year] >= YEAR_CAP:
                 continue
 
             event = headers.get("Event", "").lower()
@@ -109,7 +116,7 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
                 black_elo = int(headers.get("BlackElo", ""))
             except (ValueError, TypeError):
                 continue
-            if not (2300 <= white_elo <= 3500) or not (2300 <= black_elo <= 3500):
+            if not (2200 <= white_elo <= 3500) or not (2200 <= black_elo <= 3500):
                 continue
 
             if headers.get("Result", "*") not in ("1-0", "0-1", "1/2-1/2"):
@@ -159,6 +166,7 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             }
 
             games_data.append(game_dict)
+            year_counts[year] += 1
             pbar.update(1)
 
         pbar.close()
@@ -170,7 +178,7 @@ if __name__ == "__main__":
     opening_map = get_map()
     games = process_pgn(opening_map)
 
-    output_path = "AllGames_test1000.json"
+    output_path = "AllGames_2000_2023_v2_2200ELO_Min_20kGamesPerYear.json"
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(games, f, indent=2, ensure_ascii=False)
 

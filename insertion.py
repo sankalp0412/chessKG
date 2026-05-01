@@ -10,7 +10,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 # ---------- LOAD JSON FILE ----------
-file_path = "AllGames2015.json"
+file_path = "AllGames_2000_2023_v2_2200ELO_Min_20kGamesPerYear.json"
 
 with open(file_path, "r") as f:
     games = json.load(f)
