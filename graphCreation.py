@@ -34,6 +34,9 @@ def clean_uri(value: str) -> str:
 def createGraph():
     games: list[dict] = getGames()
 
+    with open("fideIds.json", "r") as f:
+        fideData = json.load(f)
+
     try:
         graph.bind("chess", CHESS)
         for game in tqdm(games):
@@ -50,6 +53,15 @@ def createGraph():
             opening = game["opening"]  # related to game, and independent uri
             termination = game["termination"]  # related to game
             moves = " ".join(game["moves"])  # relate to game
+
+            white_fide_data = fideData.get(white_name, {})
+            black_fide_data = fideData.get(black_name, {})
+
+            whiteFideId = white_fide_data.get("fideId")
+            blackFideId = black_fide_data.get("fideId")
+
+            whiteFideRating = white_fide_data.get("standardRating")
+            blackFideRating = black_fide_data.get("standardRating")
 
             game_id = hashlib.md5(
                 f"{event_name}_{date}_{white_name}_{black_name}".encode("utf-8")
@@ -84,6 +96,40 @@ def createGraph():
 
             graph.add((white_uri, RDF.type, CHESS.Player))
             graph.add((black_uri, RDF.type, CHESS.Player))
+
+            if whiteFideId is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        CHESS.fideID,
+                        Literal(whiteFideId, datatype=XSD.integer),
+                    )
+                )
+            if blackFideId is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.fideID,
+                        Literal(blackFideId, datatype=XSD.integer),
+                    )
+                )
+
+            if whiteFideRating is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        CHESS.StandardRating,
+                        Literal(whiteFideRating, datatype=XSD.integer),
+                    )
+                )
+            if blackFideRating is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.StandardRating,
+                        Literal(blackFideRating, datatype=XSD.integer),
+                    )
+                )
 
             # Adding elo to game
             graph.add(
