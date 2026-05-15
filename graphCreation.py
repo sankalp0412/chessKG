@@ -7,6 +7,8 @@ from rdflib import ConjunctiveGraph
 from tqdm import tqdm
 import hashlib
 import requests
+import unicodedata
+import re
 
 CHESS = Namespace("https://ChessGameKG.org/")
 
@@ -21,14 +23,21 @@ graph.bind("chess", CHESS)
 
 
 def getGames():
-    with open("temp.json", "r") as file:
+    with open("AllGames_2000_2023_v2_2200ELO_Min_20kGamesPerYear.json", "r") as file:
         data = json.load(file)
 
     return data
 
 
 def clean_uri(value: str) -> str:
-    return value.replace(" ", "_").replace(",", "").replace(".", "").replace("/", "_")
+    # Normalize unicode → converts ü→u, é→e, ñ→n etc.
+    value = unicodedata.normalize("NFKD", value)
+    value = value.encode("ascii", "ignore").decode("ascii")
+    # Remove anything that's not alphanumeric or underscore
+    value = re.sub(r"[^\w]", "_", value)
+    # Clean up multiple consecutive underscores
+    value = re.sub(r"_+", "_", value)
+    return value.strip("_")
 
 
 def createGraph():
@@ -49,8 +58,13 @@ def createGraph():
             result = game["result"]  # Relate to game
             white_elo = game["white_elo"]  # related to player
             black_elo = game["black_elo"]  # related to player
-            eco_code = game["eco_code"]  # related to game, and independent uri
-            opening = game["opening"]  # related to game, and independent uri
+            eco_code = game.get("eco_code")  # related to game, and independent uri
+            opening = game.get("opening")  # related to game, and independent uri
+
+            # skip if no eco code, becasue some same games are duplicated
+            if not eco_code or not opening:
+                continue
+
             termination = game["termination"]  # related to game
             moves = " ".join(game["moves"])  # relate to game
 
@@ -64,7 +78,9 @@ def createGraph():
             blackFideRating = black_fide_data.get("standardRating")
 
             game_id = hashlib.md5(
-                f"{event_name}_{date}_{white_name}_{black_name}".encode("utf-8")
+                f"{event_name}_{date}_{white_name}_{black_name}_{game_round}".encode(
+                    "utf-8"
+                )
             ).hexdigest()
 
             game_uri = CHESS[f"game_{game_id}"]
