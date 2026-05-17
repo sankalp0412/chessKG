@@ -1,0 +1,62 @@
+@prefix chess: <https://ChessGameKG.org/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Inferred Player Classes ───────────────────────────────────────────────────
+
+# Player who wins with the same opening in ≥60% of their games using it
+chess:OpeningSpecialist     rdfs:subClassOf chess:Player .
+
+# Player with StandardRating ≥ 2650
+chess:ElitePlayer           rdfs:subClassOf chess:Player .
+
+# Player with StandardRating ≥ 2700 — subset of ElitePlayer
+chess:SuperGM               rdfs:subClassOf chess:ElitePlayer .
+
+# Top 5 players by StandardRating within their federation
+chess:FederationTopPlayer   rdfs:subClassOf chess:Player .
+
+# Win rate ≥ 55% across ≥ 50 games
+chess:ConsistentPlayer      rdfs:subClassOf chess:Player .
+
+# Win rate ≥ 40% in games where moveCount > 40
+chess:EndgameSpecialist     rdfs:subClassOf chess:Player .
+
+# Lower-titled (FM/CM/WFM/WIM) or untitled player who has beaten a GM or IM ≥ 3 times
+chess:Underdog rdfs:subClassOf chess:Player .
+
+
+# ── Inferred Properties ───────────────────────────────────────────────────────
+
+# Player A wins ≥ 50% of games against Player B (min 10 games played)
+chess:dominates             a owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Player .
+
+# Two players with ≥ 20 games against each other, ≥ 50% drawn
+chess:rivals                a owl:SymmetricProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Player .
+
+# Opening a player reaches most frequently when playing as White
+chess:preferredOpeningAsWhite a owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Opening .
+
+# Opening a player reaches most frequently when playing as Black
+chess:preferredOpeningAsBlack a owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Opening .
+
+# Opponent a player has faced the most — not the same as rivals
+# (e.g. domestic league opponents play often but aren't necessarily rivals)
+chess:mostPlayedAgainst     a owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Player .
+
+
+# Two players who share the same preferredOpeningAsWhite AND preferredOpeningAsBlack
+chess:stylesSimilarTo a owl:SymmetricProperty ;
+                      rdfs:domain chess:Player ;
+                      rdfs:range  chess:Player .
