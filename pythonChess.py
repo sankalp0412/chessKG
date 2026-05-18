@@ -3,6 +3,7 @@ import chess.pgn
 import pandas as pd
 import json
 from tqdm import tqdm
+import re
 
 
 def get_map():
@@ -12,18 +13,14 @@ def get_map():
 
 
 def get_termination(game: chess.pgn.Game) -> str:
-    """Return 'Checkmate', 'Resignation', 'Draw', or 'Unknown' based on game end."""
     result = game.headers.get("Result", "*")
-    termination_tag = game.headers.get("Termination", "").lower()
 
-    # Walk to the final position
     board = game.end().board()
 
     if board.is_checkmate():
         return "Checkmate"
 
     if result in ("1-0", "0-1"):
-        # Not checkmate -> must be resignation (or forfeit)
         return "Resignation"
 
     if result == "1/2-1/2":
@@ -40,8 +37,53 @@ def get_termination(game: chess.pgn.Game) -> str:
     return "Unknown"
 
 
-from tqdm import tqdm
-import chess.pgn
+def clean_player_name(name: str) -> str:
+    import unicodedata
+
+    # Normalize Unicode (é→e, ñ→n, etc.)
+    name = unicodedata.normalize("NFKD", name)
+    name = name.encode("ascii", "ignore").decode("ascii")
+
+    # Remove trailing dots
+    name = name.rstrip(".")
+
+    # Remove (wh) and (bl) suffixes
+    name = re.sub(r"\s*\(wh\)\s*$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s*\(bl\)\s*$", "", name, flags=re.IGNORECASE)
+
+    # Remove any remaining special/corrupted characters (like ?)
+    name = re.sub(r"[^a-zA-Z0-9,.\s\-']", "", name)
+
+    # Clean up whitespace
+    name = " ".join(name.split()).strip()
+
+    return name
+
+
+def is_full_name(name: str) -> bool:
+    """Return False if name has only an initial after the comma"""
+    if "," in name:
+        parts = name.split(",")
+        firstname = parts[1].strip().rstrip(".")
+        # reject single initial like "D" or "B H" or "B."
+        if len(firstname) <= 2:
+            return False
+    elif len(name.split()) == 1:
+        # single word no comma — likely just a surname
+        return False
+    return True
+
+
+def normalize_event_name(event: str) -> str:
+    # Remove year tokens like 2012, 2019-20, 2019/20, 2019-2020.
+    cleaned = re.sub(
+        r"(?<!\d)(?:19|20)\d{2}(?:\s*[-/]\s*(?:\d{2}|(?:19|20)\d{2}))?(?!\d)",
+        " ",
+        event,
+    )
+    cleaned = re.sub(r"\s+", " ", cleaned)
+    return cleaned.strip(" -_/,:;()[]")
+
 
 MAJOR_TOURNAMENTS = {
     "world championship",
@@ -55,6 +97,7 @@ MAJOR_TOURNAMENTS = {
     "norway chess",
     "sinquefield cup",
     "saint louis",
+    "st louis",
     "london classic",
     "gashimov memorial",
     "shamkir",
@@ -73,28 +116,30 @@ MAJOR_TOURNAMENTS = {
     "dortmund",
     "biel",
     "nh chess",
+    "bundesliga",
+    "qatar masters",
+    "reykjavik open",
+    "sharjah masters",
 }
 
 
-def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]:
+def process_pgn(opening_map: dict, pgn_path: str) -> list[dict]:
     games_data = []
+    skipped_names = 0
     from collections import defaultdict
 
     year_counts = defaultdict(int)
-    YEAR_CAP = 20_000
+    YEAR_CAP = 10000
 
-    with open(pgn_path) as pgn:
-
-        pbar = tqdm(desc="Processing games")
+    with open(pgn_path, encoding="utf-8", errors="ignore") as pgn:
+        pbar = tqdm(desc=f"Processing {pgn_path}")
 
         while True:
-            # Fast header-only read to check filters before parsing moves
             offset = pgn.tell()
             headers = chess.pgn.read_headers(pgn)
             if headers is None:
                 break
 
-            # --- header filters (no move parsing yet) ---
             date_str = headers.get("Date", "").strip()
             if not date_str or "?" in date_str:
                 continue
@@ -102,13 +147,15 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
                 year = int(date_str.split(".")[0])
             except ValueError:
                 continue
-            if year < 2000 or year > 2023:
+            if year < 2000 or year > 2024:
                 continue
             if year_counts[year] >= YEAR_CAP:
                 continue
 
-            event = headers.get("Event", "").lower()
-            if not any(t in event for t in MAJOR_TOURNAMENTS):
+            raw_event = headers.get("Event", "").strip()
+            event_clean = normalize_event_name(raw_event)
+            event_match = event_clean.lower()
+            if not any(t in event_match for t in MAJOR_TOURNAMENTS):
                 continue
 
             try:
@@ -122,7 +169,19 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             if headers.get("Result", "*") not in ("1-0", "0-1", "1/2-1/2"):
                 continue
 
-            # Headers passed — seek back and parse full game with moves
+            # clean and validate names before parsing moves
+            white_raw = headers.get("White", "").strip()
+            black_raw = headers.get("Black", "").strip()
+            white = clean_player_name(white_raw)
+            black = clean_player_name(black_raw)
+
+            if not white or not black or white == "?" or black == "?":
+                continue
+            if not is_full_name(white) or not is_full_name(black):
+                skipped_names += 1
+                continue
+
+            # headers passed — parse full game
             pgn.seek(offset)
             game = chess.pgn.read_game(pgn)
             if game is None:
@@ -131,11 +190,6 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             headers = game.headers
             eco_code = headers.get("ECO", "")
             opening_name = opening_map.get(eco_code, eco_code)
-
-            white = headers.get("White", "").strip()
-            black = headers.get("Black", "").strip()
-            if not white or not black or white == "?" or black == "?":
-                continue
 
             result = headers.get("Result", "*")
             termination = get_termination(game)
@@ -149,45 +203,62 @@ def process_pgn(opening_map: dict, pgn_path: str = "AllGames.pgn") -> list[dict]
             if not moves:
                 continue
 
-            game_dict = {
-                "event": headers.get("Event", ""),
-                "site": headers.get("Site", ""),
-                "date": date_str,
-                "round": headers.get("Round", ""),
-                "white": white,
-                "black": black,
-                "result": result,
-                "white_elo": white_elo,
-                "black_elo": black_elo,
-                "eco_code": eco_code,
-                "opening": opening_name,
-                "termination": termination,
-                "moves": moves,
-            }
-
-            games_data.append(game_dict)
+            games_data.append(
+                {
+                    "event": event_clean,
+                    "site": headers.get("Site", ""),
+                    "date": date_str,
+                    "round": headers.get("Round", ""),
+                    "white": white,
+                    "black": black,
+                    "result": result,
+                    "white_elo": white_elo,
+                    "black_elo": black_elo,
+                    "eco_code": eco_code,
+                    "opening": opening_name,
+                    "termination": termination,
+                    "moves": moves,
+                }
+            )
             year_counts[year] += 1
             pbar.update(1)
 
         pbar.close()
+        print(f"  Skipped {skipped_names} games due to incomplete player names")
 
     return games_data
 
 
 if __name__ == "__main__":
     opening_map = get_map()
-    games = process_pgn(opening_map)
 
-    output_path = "AllGames_2000_2023_v2_2200ELO_Min_20kGamesPerYear.json"
+    print("--- Processing original PGN ---")
+    games1 = process_pgn(opening_map, "AllGames.pgn")
+
+    print("--- Processing additional 2024 PGN ---")
+    games2 = process_pgn(opening_map, "additional_2024 games.pgn")
+
+    # merge and deduplicate by event+date+white+black+round
+    seen = set()
+    merged = []
+    for game in games1 + games2:
+        key = f"{game['event']}_{game['date']}_{game['white']}_{game['black']}_{game['round']}"
+        if key not in seen:
+            seen.add(key)
+            merged.append(game)
+
+    output_path = "AllGames_merged_clean.json"
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(games, f, indent=2, ensure_ascii=False)
+        json.dump(merged, f, indent=2, ensure_ascii=False)
 
-    print(f"Exported {len(games)} games to {output_path}")
+    print(f"\n✅ Original: {len(games1)} games")
+    print(f"✅ Additional: {len(games2)} games")
+    print(f"✅ Merged + deduplicated: {len(merged)} games")
+    print(f"✅ Exported to {output_path}")
 
-    # Quick termination summary
     from collections import Counter
 
-    termination_counts = Counter(g["termination"] for g in games)
+    termination_counts = Counter(g["termination"] for g in merged)
     print("\nTermination breakdown:")
     for term, count in termination_counts.most_common():
         print(f"  {term}: {count}")
