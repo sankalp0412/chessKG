@@ -1,0 +1,677 @@
+@prefix chess: <https://ChessGameKG.org/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+chess:game_03ce4b220a488487434a134a146ee8dc a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "6.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Nf3 d5 Bf4 c5 e3 Nc6 Nbd2 cxd4 exd4 Bf5 c3 e6 Bb5 Bd6 Bxd6 Qxd6 O-O O-O Re1 h6 Ne5 Ne7 a4 a6 Bf1 Nd7 Nxd7 Qxd7 a5 Qc7 Qf3 Rfc8 Ra3 Bg6 Nb3 Nc6 Qg3 Qe7 h4 Re8 Nc5 e5 Rb3 Nxa5 Rxe5 Qf6 Ra3 Nc4 Bxc4 dxc4 h5 Bc2 Nxb7 Qb6 Nd6 Rxe5 Qxe5 Qxb2 Ra5 Kh7 Rc5 Qc1+ Kh2 f6 Qg3 a5 Nxc4 a4 Ne3 Bb1 Rc7 Rg8 Nd5 Kh8 Ra7 a3 Ne7 Rf8 d5 a2 Qc7 Kh7 Ng6 Rg8 Qf7"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_2_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-16"^^xsd:date .
+
+chess:game_11c33869814b399c3c4795eb523e1eec a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "11.1"^^xsd:string ;
+    chess:movesPlayed "Nf3 d5 c4 d4 b4 c5 e3 Nf6 a3 Bg4 exd4 cxd4 h3 Bxf3 Qxf3 Qc7 d3 a5 b5 Nbd7 g3 Nc5 Bg2 Nfd7 O-O Ne5 Qf4 Rd8 Rd1 g6 a4 h5 b6 Qd6 Ba3 Bh6 Bxc5 Qxc5 Qe4 Nc6 Na3 Rd7 Nc2 Qxb6 Rab1 Qc7 Rb5 O-O Na1 Rb8 Nb3 e6 Nc5 Re7 Rdb1 Qc8 Qxc6"^^xsd:string ;
+    chess:openingPlayed chess:opening_Reti_Opening_without_2_c6_2_e6 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-12-08"^^xsd:date .
+
+chess:game_1676d894998aa5131d5389c0f0491ec4 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "7.1"^^xsd:string ;
+    chess:movesPlayed "Nf3 d5 g3 g6 d4 Bg7 c4 c6 Bg2 Nf6 O-O O-O Re1 dxc4 e4 Bg4 Nbd2 c5 d5 e6 h3 Bxf3 Bxf3 exd5 exd5 Nbd7 Nxc4 b5 Na3 Qb6 Bf4 Rfe8 Qd2 Rad8 Nc2 Nf8 b4 c4 Be3 Qa6 Bd4 Rxe1+ Rxe1 Qxa2 Ra1 Qb3 Ra3 Qb1+ Kg2 Rd7 Ra5 Qb3 Ra3 Qb1 Ra5 Qb3 Rxb5 Qd3 Qf4 Qxc2 Bxf6 Qf5 Qxf5 gxf5 Bxg7 Kxg7 Rc5 Ng6 Rxc4 Ne5 Rd4 Nc6 Rf4 Ne7 b5 Kf6 Rd4 h6 Kf1 Ke5 Rh4 Nxd5 Rxh6 Nc3 Rc6 Ne4 Ke1 f6 h4 Rd3 Bd1 f4 gxf4+ Kxf4 Bc2 Rd5 Rc4 f5 Rb4 Kf3 Bd1+ Kg2 Rb3 Re5 f4 Re7 Re3 Rh7 h5 Nf6 Re5 Nxh5 Rxf5 Ng3 Rf8 Rb7 Ba4 Kf3 f5 Kf4 f6 Ne4 Bc2 Nd6 Rd8 Ke5 Bb3 Nf7 Rd5+ Kxf6 Kd2 Rb6 Bc4 Rd6 Kc3 Rxd5 Bxd5 Nd6 Kb4 Nxb5 Kxb5 a6+ Kxa6"^^xsd:string ;
+    chess:openingPlayed chess:opening_Neo_Grunfeld_6_O_O_c6 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw_Insufficient_Material ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-12-03"^^xsd:date .
+
+chess:game_2b9aad5c87d7e701baa7b107bd28e6de a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "6.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Bf4 d5 e3 e6 Nf3 c5 c3 Bd6 Bb5+ Nc6 Bxc6+ bxc6 Bxd6 Qxd6 Qa4 O-O Qa3 Ne4 Nfd2 e5 Nxe4 dxe4 Qxc5 Qg6 Nd2 Qxg2 O-O-O Qxf2 dxe5 Rb8 Nc4 Be6 Rd2 Qf3 Re1 Bxc4 Qxc4 Qf5 Qxc6 Qxe5 Qd5 Qe7 Qd6 Qg5 Qd5 Qe7 Qd6 Qg5 Qd5 Qh4 Red1 g6 Qe5 Rbe8 Qg3 Qh5 Qf4 Qa5 a3 Qb5 Rd4 Qe2 R1d2 Qf3 Kc2 Qxf4 exf4 f5 h4 e3 Re2 Re7 Kd3 Rfe8 h5 gxh5 Rd5 h4 Rxf5 Rd7+ Kc2 Kg7 Rg2+ Kh8 Re2 Kg7 Rg2+ Kh8 Re2 Kg7"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_2_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-12-01"^^xsd:date .
+
+chess:game_2fbfa7b340d63f8e446d714aac1680f5 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "13.1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 d3 b5 Bb3 d6 c3 O-O h3 Bb7 Be3 Na5 Bc2 c5 Nbd2 Re8 a4 h6 d4 exd4 cxd4 cxd4 Nxd4 Nc4 Nxc4 bxc4 f3 Bf8 Bf2 d5 exd5 Nxd5 Be4 Re5 Rc1 Rc8 Ne2 Qe7 Qd4 f5 Bg3 Rxe4 fxe4 Qxe4 Qxe4 fxe4 Rfd1 Nb4 Rd7 Bc5+ Kh2 Bc6 Rc7 Rxc7 Bxc7 Bd5 Nc3 Nd3 Rc2 Bc6 a5 Kf7 Re2 Nc1 Re1 Nd3 Re2 Nc1 Re1 Nd3 Re2"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed_Defense ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-27"^^xsd:date .
+
+chess:game_2fc9823cd6563569fe58bbb504b28fff a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "14.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 Nc3 Bb4 e3 O-O Bd2 d5 a3 Be7 Nf3 c5 dxc5 Bxc5 Qc2 dxc4 Bxc4 Nbd7 Rd1 Be7 Ng5 h6 h4 Qc7 Be2 Rd8 Rc1 Nf8 Nge4 Nxe4 Nxe4 Qxc2 Rxc2 Bd7 Bb4 Bxb4+ axb4 Bc6 Nc5 Bxg2 Rg1 Bd5 e4 Bc6 b5 Be8 Nxb7 Rd4 Rc4 Rd7 Nc5 Rc7 Rc3 Rac8 b4 Nd7 Rcg3 Nxc5 bxc5 Rxc5 Rxg7+ Kf8 Bd3 Rd8 Ke2 Rc3 Rg8+ Ke7 R1g3 e5 Rh8 Rd6 b6 Rxb6 Rxe8+ Kxe8 Bb5+ Rxb5 Rxc3 Kd7 Rf3 Ke7 Rc3 a5 Rc7+ Kf6 Rc6+ Kg7 Ra6 Rb2+ Kf3 Ra2 Kg3 h5 Ra8 Ra1 Kg2 a4 Ra5 f6 Kf3 a3 Ra6 Kf7 Ke3 Ke8 Ke2 Ke7 Kf3 Ra2 Ke3 Ra1 Ke2 Kf7 Kf3 Ra2 Ke3 Ke7 Kf3 Kd7 Rxf6 Rb2 Ra6 Rb3+ Kg2 Kc7 f4 exf4 e5 Kb7 Ra4 Kc6 Ra6+ Kb5 Ra7 Kb6 Ra8 Kc5 Ra6 Kb5 Ra7 Kb6 Ra8 Kc6 Ra6+ Kd7 Kf2 Ke7 Kg2 Re3 Kf2 Rg3 Kf1 Rc3 Kf2 Re3 Kg2 Kd7 Kf2 Kc7 e6 Kd8 Ra7 Ke8 Kg2 Rxe6 Rxa3 Rg6+ Kf2 Rg4 Ra5 Rxh4 Kf3 Ke7 Rf5 Ke6 Rxf4 Rxf4+"^^xsd:string ;
+    chess:openingPlayed chess:opening_Nimzo_Indian_4_e3_O_O ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-29"^^xsd:date .
+
+chess:game_397232fedcd06981fc730a9ed39072fe a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "5"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O a4 Rb8 axb5 axb5 h3 d6 c3 b4 d3 bxc3 bxc3 d5 Nbd2 dxe4 dxe4 Bd6 Qc2 h6 Nf1 Ne7 Ng3 Ng6 Be3 Qe8 Red1 Be6 Ba4 Bd7 Nd2 Bxa4 Qxa4 Qxa4 Rxa4 Ra8 Rda1 Rxa4 Rxa4 Rb8 Ra6 Ne8 Kf1 Nf8 Nf5 Ne6 Nc4 Rd8 f3 f6 g4 Kf7 h4 Bf8 Ke2 Nd6 Ncxd6+ Bxd6 h5 Bf8 Ra5 Ke8 Rd5 Ra8 Rd1 Ra2+ Rd2 Ra1 Rd1 Ra2+ Rd2 Ra1 Rd1"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-12-01"^^xsd:date .
+
+chess:game_3a405b04063bd43fab583c5267576fef a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "14.1"^^xsd:string ;
+    chess:movesPlayed "Nf3 d5 g3 c5 Bg2 Nc6 d4 e6 O-O cxd4 Nxd4 Nge7 c4 Nxd4 Qxd4 Nc6 Qd1 d4 e3 Bc5 exd4 Bxd4 Nc3 O-O Nb5 Bb6 b3 a6 Nc3 Bd4 Bb2 e5 Qd2 Be6 Nd5 b5 cxb5 axb5 Nf4 exf4 Bxc6 Bxb2 Qxb2 Rb8 Rfd1 Qb6 Bf3 fxg3 hxg3 b4 a4 bxa3 Rxa3 g6 Qd4 Qb5 b4 Qxb4 Qxb4 Rxb4 Ra8 Rxa8 Bxa8 g5 Bd5 Bf5 Rc1 Kg7 Rc7 Bg6 Rc4 Rb1+ Kg2 Re1 Rb4 h5 Ra4 Re5 Bf3 Kh6 Kg1 Re6 Rc4 g4 Bd5 Rd6 Bb7 Kg5 f3 f5 fxg4 hxg4 Rb4 Bf7 Kf2 Rd2+ Kg1 Kf6 Rb6+ Kg5 Rb4 Be6 Ra4 Rb2 Ba8 Kf6 Rf4 Ke5 Rf2 Rxf2 Kxf2 Bd5 Bxd5 Kxd5 Ke3 Ke5"^^xsd:string ;
+    chess:openingPlayed chess:opening_King_s_Indian_Attack_3_Bg2 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "0-1"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-12-12"^^xsd:date .
+
+chess:game_3a9c0df609ebcc2d982bd5195caa085c a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "10.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Nf3 d5 Bf4 e6 e3 c5 Be2 Bd6 dxc5 Bxc5 c4 O-O O-O Nc6 Nc3 dxc4 Bxc4 Nh5 Bg5 Be7 Ne4 Nf6 Nxf6+ Bxf6 Qxd8 Rxd8 Bxf6 gxf6 Rfd1 Bd7 Rac1 Be8 Rxd8 Rxd8 Kf1 Kg7 a3 f5 Ke1 Kf6 Be2 Ne7 g3 Rc8 Rxc8 Nxc8 Nd2 Nd6 Nc4 Nxc4 Bxc4 Bc6 f4 b6 Kd2 Ke7 Kc3 Kd6 b4 f6 Kd4 h6 Bb3 Bb7 Bc4 Bc6 Bb3 Bb7 Bc4 Bc6"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_2_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-12-07"^^xsd:date .
+
+chess:game_4dee9293b3774d958a497543baab0f00 a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "4.1"^^xsd:string ;
+    chess:movesPlayed "c4 Nf6 Nc3 e5 Nf3 Nc6 e3 Bb4 Qc2 Bxc3 bxc3 d6 e4 O-O Be2 Nh5 d4 Nf4 Bxf4 exf4 O-O Qf6 Rfe1 Re8 Bd3 Bg4 Nd2 Na5 c5 dxc5 e5 Qh6 d5 Rad8 c4 b6 h3 Bh5 Be4 Re7 Qc3 Rde8 Bf3 Nb7 Re2 f6 e6 Nd6 Rae1 Nf5 Bxh5 Qxh5 Re4 Qh6 Qf3 Nd4 Rxd4 cxd4 Nb3 g5 Nxd4 Qg6 g4 fxg3 fxg3 h5 Nf5 Rh7 Qe4 Kh8 e7 Qf7 d6 cxd6 Nxd6 Qg8 Nxe8 Qxe8 Qe6 Kg7 Rf1 Rh6 Rd1 f5 Qe5+ Kf7 Qxf5+ Rf6 Qh7+ Ke6 Qg7 Rg6 Qf8"^^xsd:string ;
+    chess:openingPlayed chess:opening_English_Opening_Four_knights_system ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-13"^^xsd:date .
+
+chess:game_53219ad095c74f247ae2a021a11abab9 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "5.1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 d3 b5 Bb3 d6 c3 O-O h3 Bb7 a4 Na5 Ba2 c5 Bg5 h6 Bxf6 Bxf6 axb5 axb5 Nbd2 Nc6 Bd5 Rxa1 Qxa1 Qd7 Re1 Ra8 Qd1 Bd8 Nf1 Ne7 Bxb7 Qxb7 Ne3 Bb6 h4 Qc6 h5 c4 d4 exd4 Nxd4 Qc5 Qg4 Qe5 Nf3 Qe6 Nf5 Nxf5 exf5 Qf6 Qe4 Rb8 Re2 Bc5 g4 Qd8 Qd5 Kf8 Kf1 Rc8 Re4 Rb8 g5 hxg5 Rg4 Ra8 Nxg5 Ra1+ Ke2 Qe7+ Ne4 Qe8 Kf3 Qa8 Qxa8+ Rxa8 f6 g6 hxg6 fxg6 Rxg6 Ra2 Kg4 Rxb2 Rh6"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed_Defense ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-15"^^xsd:date .
+
+chess:game_5774881a6cd86c0c127b37c05f64353e a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2782.0 ;
+    chess:gameRound "4"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Bd6 O-O O-O c4 c6 Re1 Bf5 Qb3 Qd7 Nc3 Nxc3 Bxf5 Qxf5 bxc3 b6 cxd5 cxd5 Qb5 Qd7 a4 Qxb5 axb5 a5 Nh4 g6 g4 Nd7 Ng2 Rfc8 Bf4 Bxf4 Nxf4 Rxc3 Nxd5 Rd3 Re7 Nf8 Nf6+ Kg7 Ne8+ Kg8 d5 a4 Nf6+ Kg7 g5 a3 Ne8+ Kg8 Nf6+ Kg7 Ne8+ Kg8 Nf6+"^^xsd:string ;
+    chess:openingPlayed chess:opening_Petrov_s_Defense_Classical_Variation ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Carlsen_Magnus ;
+    chess:whiteRating 2855.0 ;
+    schema:startDate "2021-11-30"^^xsd:date .
+
+chess:game_58becbbbe0a521712a2ffaaa718eb480 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "3.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 Nc3 d5 cxd5 exd5 Bg5 c6 e3 h6 Bh4 Be7 Bd3 O-O Qc2 Re8 Nge2 Nbd7 O-O a5 a3 Nh5 Bxe7 Qxe7 Rae1 Nf8 Nc1 Nf6 f3 Ne6 N1e2 c5 Bb5 Rd8 dxc5 Qxc5 Qd2 Bd7 Bxd7 Nxd7 Nd4 Nb6 Rd1 Nc4 Qf2 Rac8 Na4 Qe7 Rfe1 Qf6 Nb5 Nc7 Nd4 Ne6 Nb5 Nc7 Nd4 Ne6"^^xsd:string ;
+    chess:openingPlayed chess:opening_QGD_3_Nf6 ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-12"^^xsd:date .
+
+chess:game_5a96e06e73b020c3aaa8b974629faa20 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "7.1"^^xsd:string ;
+    chess:movesPlayed "e4 e6 d4 d5 Nd2 c5 Ngf3 cxd4 Nxd4 Nf6 exd5 Nxd5 N2f3 Be7 Bc4 Nc6 Nxc6 bxc6 O-O O-O Qe2 Bb7 Bd3 Qc7 Qe4 Nf6 Qh4 c5 Bf4 Qb6 Ne5 Rad8 Rae1 g6 Bg5 Rd4 Qh3 Qc7 b3 Nh5 f4 Bd6 c3 Nxf4 Bxf4 Rxf4 Rxf4 Bxe5 Rh4 Rd8 Be4 Bxe4 Rhxe4 Rd5 Rh4 Qd6 Qe3 h5 g3 Bf6 Rc4 h4 gxh4 Rd2 Re2 Rd3 Qxc5 Rd1+ Kg2 Qd3 Rf2 Kg7 Rcf4 Qxc3"^^xsd:string ;
+    chess:openingPlayed chess:opening_French_Tarrasch_Open_Variation ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-18"^^xsd:date .
+
+chess:game_62386427b20c795e0bcbfa046dcd52ff a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O h3 Na5 Nxe5 Nxb3 axb3 Bb7 d3 d5 exd5 Qxd5 Qf3 Bd6 Kf1 Rfb8 Qxd5 Nxd5 Bd2 c5 Nf3 Rd8 Nc3 Nb4 Rec1 Rac8 Ne2 Nc6 Be3 Ne7 Bf4 Bxf3 gxf3 Bxf4 Nxf4 Rc6 Re1 Nf5 c3 Nh4 Re3 Kf8 Ng2 Nf5 Re5 g6 Ne1 Ng7 Re4 f5 Re3 Ne6 Ng2 b4 Ke2 Rb8 Kd2 bxc3+ bxc3 Rxb3 Kc2 Rb7 h4 Kf7 Ree1 Kf6 Ne3 Rd7 Nc4 Re7 Ne5 Rd6 Nc4 Rc6 Ne5 Rd6 Nc4"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-11-26"^^xsd:date .
+
+chess:game_666a6ae043141e0f746c10a1eff705d1 a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "3"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O a4 Bb7 d3 d6 Nbd2 Re8 Nf1 h6 Bd2 Bf8 Ne3 Ne7 c4 bxc4 Nxc4 Nc6 Rc1 a5 Bc3 Bc8 d4 exd4 Nxd4 Nxd4 Qxd4 Be6 h3 c6 Bc2 d5 e5 dxc4 Qxd8 Rexd8 exf6 Bb4 fxg7 Bxc3 bxc3 Kxg7 Kf1 Rab8 Rb1 Kf6 Rxb8 Rxb8 Rb1 Rxb1+ Bxb1 Ke5 Ke2 f5 Bc2 f4 Bb1 c5 Bc2 Bd7 f3 Kf6 h4 Ke5 Kf2 Kf6 Ke2 Ke5 Kf2"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-11-28"^^xsd:date .
+
+chess:game_6698d4a44a05f9d46804c965ed9c16f9 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "9.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 g3 Bb4+ Bd2 Be7 Bg2 d5 Nf3 O-O O-O c6 Qc2 Nbd7 Rd1 b6 Bc3 Bb7 Nbd2 Qc7 Rac1 Rfd8 b4 c5 bxc5 bxc5 Qb2 Nb6 Ba5 dxc4 Nxc4 Bxf3 Bxb6 axb6 Bxf3 Ra6 Qb5 Rxa2 Nxb6 Qa7 Qb1 Rb8 dxc5 Ra6 Qb5 Bxc5 Qxc5 Qxb6 Qxb6 Raxb6 Rc6 Rxc6 Bxc6 g5 Kg2 Rb2 Kf1 Kg7 h3 h5 Ra1 Rc2 Bb5 Rc5 Bd3 Nd7 f4 gxf4 gxf4 Rc3 Kf2 Nc5 Ke3 Nxd3 exd3 Rc2 Kf3 Rd2 Ra3 Kg6 Rb3 f6 Ra3 Kf5 Ra5+ e5 fxe5 Rxd3+ Ke2 Rxh3 exf6+ Kxf6 Kf2 h4 Kg2 Rg3+ Kh2 Kg6 Rb5 Rg5 Rxg5+ Kxg5 Kh3 Kf6 Kxh4"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw_Insufficient_Material ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-12-05"^^xsd:date .
+
+chess:game_69b7ce157f7dda71a9aa010c3e7f6c28 a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "7"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O a4 Rb8 axb5 axb5 h3 d6 d3 h6 Nc3 Re8 Nd5 Bf8 Nxf6+ Qxf6 c3 Ne7 Be3 Be6 d4 exd4 cxd4 Bxb3 Qxb3 Ng6 Rec1 c5 e5 Qf5 dxc5 dxc5 Bxc5 Bxc5 Rxc5 Nxe5 Nxe5 Rxe5 Rxe5 Qxe5 Qc3 Qxc3 bxc3 Rc8 Ra5 Rxc3 Rxb5 Rc1+ Kh2 Rc3 h4 g6 g3 h5 Kg2 Kg7 Ra5 Kf6 Rb5 Kg7 Ra5 Kf6 Rb5 Kg7 Ra5 Kf6 Ra6+ Kg7 Ra7"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-12-04"^^xsd:date .
+
+chess:game_7487930bb9f3a304fb8447188f0a8c40 a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "11"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5 c3 d6 O-O a5 Re1 Ba7 Na3 h6 Nc2 O-O Be3 Bxe3 Nxe3 Re8 a4 Be6 Bxe6 Rxe6 Qb3 b6 Rad1 Ne7 h3 Qd7 Nh2 Rd8 Nhg4 Nxg4 hxg4 d5 d4 exd4 exd5 Re4 Qc2 Rf4 g3 dxe3 gxf4 Qxg4+ Kf1 Qh3+ Kg1 Nf5 d6 Nh4 fxe3 Qg3+ Kf1 Nf3 Qf2 Qh3+ Qg2 Qxg2+ Kxg2 Nxe1+ Rxe1 Rxd6 Kf3 Rd2 Rb1 g6 b4 axb4 Rxb4 Ra2 Ke4 h5 Kd5 Rc2 Rb3 h4 Kc6 h3 Kxc7 h2 Rb1 Rxc3+ Kxb6 Rb3+ Rxb3 h1=Q a5 Qe4 Ka7 Qe7+ Ka8 Kg7 Rb6 Qc5"^^xsd:string ;
+    chess:openingPlayed chess:opening_King_s_Pawn_Game ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "0-1"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-12-10"^^xsd:date .
+
+chess:game_8283f98b2320790cc7b593eb4903130e a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2782.0 ;
+    chess:gameRound "6"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Nf3 d5 g3 e6 Bg2 Be7 O-O O-O b3 c5 dxc5 Bxc5 c4 dxc4 Qc2 Qe7 Nbd2 Nc6 Nxc4 b5 Nce5 Nb4 Qb2 Bb7 a3 Nc6 Nd3 Bb6 Bg5 Rfd8 Bxf6 gxf6 Rac1 Nd4 Nxd4 Bxd4 Qa2 Bxg2 Kxg2 Qb7+ Kg1 Qe4 Qc2 a5 Rfd1 Kg7 Rd2 Rac8 Qxc8 Rxc8 Rxc8 Qd5 b4 a4 e3 Be5 h4 h5 Kh2 Bb2 Rc5 Qd6 Rd1 Bxa3 Rxb5 Qd7 Rc5 e5 Rc2 Qd5 Rdd2 Qb3 Ra2 e4 Nc5 Qxb4 Nxe4 Qb3 Rac2 Bf8 Nc5 Qb5 Nd3 a3 Nf4 Qa5 Ra2 Bb4 Rd3 Kh6 Rd1 Qa4 Rda1 Bd6 Kg1 Qb3 Ne2 Qd3 Nd4 Kh7 Kh2 Qe4 Rxa3 Qxh4+ Kg1 Qe4 Ra4 Be5 Ne2 Qc2 R1a2 Qb3 Kg2 Qd5+ f3 Qd1 f4 Bc7 Kf2 Bb6 Ra1 Qb3 Re4 Kg7 Re8 f5 Raa8 Qb4 Rac8 Ba5 Rc1 Bb6 Re5 Qb3 Re8 Qd5 Rcc8 Qh1 Rc1 Qd5 Rb1 Ba7 Re7 Bc5 Re5 Qd3 Rb7 Qc2 Rb5 Ba7 Ra5 Bb6 Rab5 Ba7 Rxf5 Qd3 Rxf7+ Kxf7 Rb7+ Kg6 Rxa7 Qd5 Ra6+ Kh7 Ra1 Kg6 Nd4 Qb7 Ra2 Qh1 Ra6+ Kf7 Nf3 Qb1 Rd6 Kg7 Rd5 Qa2+ Rd2 Qb1 Re2 Qb6 Rc2 Qb1 Nd4 Qh1 Rc7+ Kf6 Rc6+ Kf7 Nf3 Qb1 Ng5+ Kg7 Ne6+ Kf7 Nd4 Qh1 Rc7+ Kf6 Nf3 Qb1 Rd7 Qb2+ Rd2 Qb1 Ng1 Qb4 Rd1 Qb3 Rd6+ Kg7 Rd4 Qb2+ Ne2 Qb1 e4 Qh1 Rd7+ Kg8 Rd4 Qh2+ Ke3 h4 gxh4 Qh3+ Kd2 Qxh4 Rd3 Kf8 Rf3 Qd8+ Ke3 Qa5 Kf2 Qa7+ Re3 Qd7 Ng3 Qd2+ Kf3 Qd1+ Re2 Qb3+ Kg2 Qb7 Rd2 Qb3 Rd5 Ke7 Re5+ Kf7 Rf5+ Ke8 e5 Qa2+ Kh3 Qe6 Kh4 Qh6+ Nh5 Qh7 e6 Qg6 Rf7 Kd8 f5 Qg1 Ng7"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_2_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Carlsen_Magnus ;
+    chess:whiteRating 2855.0 ;
+    schema:startDate "2021-12-03"^^xsd:date .
+
+chess:game_8f00153f095f183fbbf443d0bb772add a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "8.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 Nc3 Bb4 e3 O-O a3 Bxc3+ bxc3 d6 Ne2 c5 Ng3 Nc6 Ra2 b6 e4 Ba6 Bg5 h6 h4 hxg5 hxg5 g6 gxf6 Qxf6 e5 dxe5 d5 Ne7 d6 Nf5 Ne4 Qd8 Qd3 Kg7 g4 Bb7 Rh3 Nh4 g5 Bxe4 Qxe4 Nf5 Rd2 Rh8 Rxh8 Qxh8 d7 Rd8 Qxe5+ Kh7 Qh2+ Kg7 Qe5+ Kh7 Qh2+ Kg7 Qc7 Qh4 Kd1 Qxg5 Kc2 Qe7 Bg2 e5 Be4 Nh6 Qxa7 Ng4 Bf3 Nxf2 Rxf2 e4 Re2 f5 Qxb6 Rxd7 Qb8 Qd6 Qxd6 Rxd6 Bxe4 fxe4 Rxe4 Kf6 Re8"^^xsd:string ;
+    chess:openingPlayed chess:opening_Nimzo_Indian_Saemisch_variation_6_e3 ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-20"^^xsd:date .
+
+chess:game_91470747c4ed65610561a768f7bb1874 a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "12.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Nf3 d5 e3 c5 Nbd2 cxd4 exd4 Qc7 c3 Bd7 Bd3 Nc6 O-O Bg4 Re1 e6 Nf1 Bd6 Bg5 O-O Bxf6 gxf6 Ng3 f5 h3 Bxf3 Qxf3 Ne7 Nh5 Kh8 g4 Rg8 Kh1 Ng6 Bc2 Nh4 Qe3 Rg6 Rg1 f4 Qd3 Qe7 Rae1 Qg5 c4 dxc4 Qc3 b5 a4 b4 Qxc4 Rag8 Qc6 Bb8 Qb7 Rh6 Be4 Rf8 Qxb4 Qd8 Qc3 Ng6 Bg2 Qh4 Re2 f5 Rxe6 Rxh5 gxh5 Qxh5 d5+ Kg8 d6"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-26"^^xsd:date .
+
+chess:game_a3e329a374898320280e1433e66b961e a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "11.1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 d3 b5 Bb3 d6 a3 Na5 Ba2 c5 Nc3 Be6 Bg5 O-O Bxf6 Bxf6 Nd5 g6 Qd2 Bg7 Ng5 c4 Nxe6 fxe6 Ne3 Bh6 Rad1 Rb8 dxc4 Nxc4 Bxc4 bxc4 Qxd6 Qxd6 Rxd6 Bxe3 fxe3 Rxf1+ Kxf1 Rxb2 Rxe6 Rxc2 Rxa6 Ra2 Rc6 Rxa3 Rxc4 Rxe3 Kf2 Ra3 Rc5 Ra2+ Kf3 Ra3+ Kg4 Ra2 Kh3 Re2 Rxe5 Kf7 Kg3 Kf6 Re8 Kf7 Re5 Kf6 Re8 Kf7 Re5"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Closed_Defense ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-24"^^xsd:date .
+
+chess:game_a767b93f174a4b5429f0dde9bfdc05fe a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "1.1"^^xsd:string ;
+    chess:movesPlayed "e4 e6 d4 d5 Nc3 Nf6 e5 Nfd7 f4 c5 Nce2 Nc6 c3 a5 Nf3 a4 Be3 Be7 g4 Qa5 Bg2 a3 b3 cxd4 b4 Qc7 Nexd4 Nb6 O-O Nc4 Bf2 Bd7 Qe2 Nxd4 Nxd4 Nb2 Qe3 Rc8 Rac1 Qc4 f5 Qd3 Qe1 Bg5 Rc2 Rc4 h4 Bf4 Qb1 Rxc3 Rxc3 Qxc3 fxe6 fxe6 Ne2 Qxe5 Nxf4 Qxf4 Qc2 Qc4 Qd2 O-O Bd4 Nd3 Qe3 Rxf1+ Bxf1 e5 Bxe5 Qxg4+ Bg2 Bf5 Bg3 Be4 Kh2 h6 Bh3 Qd1 Bd6 Qc2+ Kg3 Qxa2 Be6+ Kh8"^^xsd:string ;
+    chess:openingPlayed chess:opening_French_Defense ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "0-1"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-11-25"^^xsd:date .
+
+chess:game_b8692f62baec1e34feed7f89e78e2d4a a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2782.0 ;
+    chess:gameRound "10"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nf6 Nxe5 d6 Nd3 Nxe4 Qe2 Qe7 Nf4 Nf6 d4 Nc6 c3 d5 Nd2 Nd8 Nf3 Qxe2+ Bxe2 Bd6 O-O O-O Bd3 Re8 Re1 Rxe1+ Nxe1 Ne6 Nxe6 Bxe6 g3 g6 Ng2 Re8 f3 Nh5 Kf2 c6 g4 Ng7 Bf4 Bxf4 Nxf4 g5 Ne2 f5 h3 Kf7 Rh1 h6 f4 fxg4 hxg4 Bxg4 Rxh6 Bf5 Bxf5 Nxf5 Rh7+ Ng7 fxg5 Kg6 Rh3 Kxg5 Rg3+ Kf6 Rf3+ Ke7 Nf4 Kd6 Ng6 Re6 Ne5 Ne8 Rf7 Rf6+ Rxf6+ Nxf6 Ke3"^^xsd:string ;
+    chess:openingPlayed chess:opening_Petrov_s_Defense_Classical_Variation ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Carlsen_Magnus ;
+    chess:whiteRating 2855.0 ;
+    schema:startDate "2021-12-08"^^xsd:date .
+
+chess:game_c94285b8993dbf510cc10f76e2059d45 a chess:Game ;
+    chess:blackPlayer chess:player_Carlsen_Magnus ;
+    chess:blackRating 2855.0 ;
+    chess:gameRound "9"^^xsd:string ;
+    chess:movesPlayed "c4 e6 g3 d5 Bg2 d4 Nf3 Nc6 O-O Bc5 d3 Nf6 Nbd2 a5 Nb3 Be7 e3 dxe3 Bxe3 Ng4 Bc5 O-O d4 a4 Bxe7 Qxe7 Nc5 a3 bxa3 Rd8 Nb3 Nf6 Re1 Qxa3 Qe2 h6 h4 Bd7 Ne5 Be8 Qe3 Qb4 Reb1 Nxe5 dxe5 Ng4 Qe1 Qxe1+ Rxe1 h5 Bxb7 Ra4 c5 c6 f3 Nh6 Re4 Ra7 Rb4 Rb8 a4 Raxb7 Rb6 Rxb6 cxb6 Rxb6 Nc5 Nf5 a5 Rb8 a6 Nxg3 Na4 c5 a7 Rd8 Nxc5 Ra8"^^xsd:string ;
+    chess:openingPlayed chess:opening_English_Opening ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "0-1"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2782.0 ;
+    schema:startDate "2021-12-07"^^xsd:date .
+
+chess:game_cf3a499772cdb7ba6863a07df83f1756 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "3.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 Nf3 d5 c4 e6 cxd5 exd5 Nc3 c6 Qc2 g6 h3 Bf5 Qb3 Qb6 g4 Qxb3 axb3 Bc2 Bf4 h5 Rg1 hxg4 hxg4 Nbd7 Nd2 Rg8 g5 Nh5 Bh2 Rh8 f3 Ng7 Bg3 Rh5 e4 dxe4 fxe4 Ne6 Rc1 Nxd4 Bf2 Bg7 Ne2 Nxb3 Rxc2 Nxd2 Kxd2 Ne5 Nd4 Rd8 Ke2 Rh2 Bg2 a6 b3 Rd7 Rcc1 Ke7 Rcd1 Ke8 Bg3 Rh5 Nf3 Nxf3 Kxf3 Bd4 Rh1 Rxg5 Bh3 f5 Bf4 Rh5"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_2_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-11-27"^^xsd:date .
+
+chess:game_d05fd89576bbfdac081948669c73606e a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "8.1"^^xsd:string ;
+    chess:movesPlayed "c4 e5 Nc3 Bb4 Nd5 Be7 Nf3 d6 g3 c6 Nxe7 Nxe7 Bg2 f6 O-O Be6 b3 d5 Ba3 O-O Rc1 a5 Ne1 Re8 f4 exf4 Rxf4 dxc4 bxc4 Ng6 Re4 Na6 Nc2 Qc7 Nd4 Bf7 d3 Ne5 Nf3 Nd7 Rxe8+ Rxe8 Rb1 b5 cxb5 Qb6+ Kf1 cxb5 Bb2 Bxa2 Bd4 Nac5 Rc1 Bb3 Qe1 Be6 Qf2 Rc8 Be3 Rc7 Nd4 Bf7 Nc6 Rxc6 Bxc6 Qxc6 Bxc5 h6 Ke1 b4 Qd4 Ne5 Kd2 Qg2 Qf2 Qd5 Qd4 Qg2 Qf2 Qd5 Qd4 Qa2+ Rc2 Qe6 Qd8+ Kh7 Qxa5 b3 Rc1 Qd5 Qb4 Qg2 Qe4+ Qxe4 dxe4 b2 Rb1 Ba2 Rxb2 Nc4+ Kc3 Nxb2"^^xsd:string ;
+    chess:openingPlayed chess:opening_English_Opening ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-12-04"^^xsd:date .
+
+chess:game_db17345b90bcc46da182077479324fe9 a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2782.0 ;
+    chess:gameRound "2"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 Nf3 d5 g3 Be7 Bg2 O-O O-O dxc4 Qc2 b5 Ne5 c6 a4 Nd5 Nc3 f6 Nf3 Qd7 e4 Nb4 Qe2 Nd3 e5 Bb7 exf6 Bxf6 Ne4 Na6 Ne5 Bxe5 dxe5 Nac5 Nd6 Nb3 Rb1 Nbxc1 Rbxc1 Nxc1 Rxc1 Rab8 Rd1 Ba8 Be4 c3 Qc2 g6 bxc3 bxa4 Qxa4 Rfd8 Ra1 c5 Qc4 Bxe4 Nxe4 Kh8 Nd6 Rb6 Qxc5 Rdb8 Kg2 a6 Kh3 Rc6 Qd4 Kg8 c4 Qc7 Qg4 Rxd6 exd6 Qxd6 c5 Qxc5 Qxe6+ Kg7 Rxa6 Rf8 f4 Qf5+ Qxf5 Rxf5 Ra7+ Kg8 Kg4 Rb5 Re7 Ra5 Re5 Ra7 h4 Kg7 h5 Kh6 Kh4 Ra1 g4 Rh1+ Kg3 gxh5 Re6+ Kg7 g5 Rg1+ Kf2 Ra1 Rh6 Ra4 Kf3 Ra3+ Kf2 Ra4"^^xsd:string ;
+    chess:openingPlayed chess:opening_Catalan_Closed_5_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Carlsen_Magnus ;
+    chess:whiteRating 2855.0 ;
+    schema:startDate "2021-11-27"^^xsd:date .
+
+chess:game_df34ef39fe94adf5ca7a426a57adf2d2 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "9.1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 Nf6 d3 Bc5 c3 O-O O-O d5 Nbd2 dxe4 dxe4 a5 a4 Qe7 Qc2 Nb8 Re1 Rd8 h3 h6 Nf1 c6 Bc4 Na6 Ng3 Qc7 Ba2 b5 Qe2 Rb8 Nh4 Bf8 Qf3 bxa4 Bxh6 Nc5 Ng6 Rxb2 Nxf8 Rxf8 Bg5 Nh7 Bc1 Rb5 Ba3 Re8 Bc4 Be6 Bxe6 Nxe6 Nf5 c5 Qe2 Rb3 Qc4 Qc6 Bc1 Nf6 Qxa4 Qxa4 Rxa4 Rxc3 Bb2 Rb3 Bxe5 Rb4 Rxa5 Rxe4 Rxe4 Nxe4 Ra4 Nd4 Bxd4 cxd4 Rxd4 g6 Ne3 Kg7 Rb4 Ng3 Rb7 Nf5 Ng4 Re7 Rb5 Re1+ Kh2 Re2 Rb7 Nd6 Ra7 Kf8 Kg3 f5 Kf3 Re7 Ra8+ Re8 Rxe8+ Kxe8 Ne5 g5 h4 gxh4 Kf4 h3 gxh3 Ke7 Nc6+ Kf6 Nd4 Ne4 f3 Nf2 h4 Nd3+ Kg3 Kg6 Ne6 Kf6 Nf4 Nb4 Kf2 Ke5 Ke3 Nc2+ Kd2 Nd4 Nd3+ Kf6 Ke3 Nc2+ Kf4 Nd4 Kg3 Ne2+ Kf2 Nd4 Nf4 Ke5 Ne2 Ne6 Kg3 Kf6 Kg2 Kg7 Kf2 f4 Kg1 Kg6 Kg2 Kh6 Nc1 Kh5 Kh3 Nd4 Nd3 Nxf3 Nxf4+"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Berlin_Defense ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-21"^^xsd:date .
+
+chess:game_dfa88aeee1a4b0eb6df19f2c7c889ac6 a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "12.1"^^xsd:string ;
+    chess:movesPlayed "c4 e6 g3 d5 Bg2 Nf6 Nf3 d4 O-O Nc6 e3 Be7 d3 dxe3 Bxe3 e5 Nc3 O-O Re1 h6 a3 a5 h3 Be6 Kh2 Rb8 Qc2 Re8 Nb5 Bf5 Rad1 Nd7 Qd2 Bg6 d4 e4 Ng1 Nb6 Qc3 Bf6 Qc2 a4 Ne2 Bg5 Nf4 Bxf4 Bxf4 Rc8 Qc3 Nb8 d5 Qd7 d6 c5 Nc7 Rf8 Bxe4 Nc6 Bg2 Rcd8 Nd5 Nxd5 cxd5 Nb8 Qxc5 Rc8 Qd4 Na6 Re7 Qb5 d7 Rc4 Qe3 Rc2 Bd6 f6 Rxg7+"^^xsd:string ;
+    chess:openingPlayed chess:opening_English_Opening ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-12-09"^^xsd:date .
+
+chess:game_dfe2faf21a95db6f7fa5f79fc38efcd7 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "13.1"^^xsd:string ;
+    chess:movesPlayed "e4 e6 d4 d5 Nc3 Nf6 e5 Nfd7 Nce2 c5 c3 Nc6 a3 Be7 Be3 Nb6 Nf4 cxd4 cxd4 Nc4 Bxc4 dxc4 Nge2 b5 O-O O-O Nc3 Rb8 Nh5 f5 exf6 Bxf6 Qf3 Qe8 Nxf6+ Rxf6 Qe2 Qg6 f3 Rf8 Rad1 Ne7 Bf4 Rb6 Bc7 Rb7 Bd6 Re8 Bxe7 Rexe7 Qe5 a6 d5 exd5 Qxd5+ Qe6 Qc5 Re8 Rde1 Qf7 Ne4 Rf8 Nd6 Rc7 Qe5 Qf6 Qd5+ Kh8 Re5 Re7 Rfe1 Rxe5 Rxe5 h6 Qc5 Bd7 Ne4 Qf4 Re7 Bf5 Qd4 Rg8 h3 Qc1+ Kf2 Bxe4 Rxe4 c3 bxc3 Qxa3 Kg3 Qb3 Re7 a5 Rb7 Qc4 Qe5 Qc6 Qxb5 Qxc3 Ra7 Qe1+ Kh2 Qb4 Qxb4 axb4 Rb7 Ra8 Rxb4 Ra2 Kg3 Kh7 Rb5 Kg6 f4 Kf6 Kf3 Rc2 g3 Rc3+ Kg4 Ra3 h4 Rc3 Rb6+ Kf7 f5 h5+ Kf4 Rc4+ Kf3 Rc3+ Kf4 Rc4+ Kf3 Rc3+"^^xsd:string ;
+    chess:openingPlayed chess:opening_French_Defense ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-12-11"^^xsd:date .
+
+chess:game_e972eced56dfc57527ba0be817e795b6 a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "10.1"^^xsd:string ;
+    chess:movesPlayed "c4 Nf6 Nc3 e5 Nf3 Nc6 e4 Bc5 Nxe5 Nxe5 d4 Bb4 dxe5 Nxe4 Qf3 Nxc3 bxc3 Bc5 Qg3 Kf8 Be2 d6 Bf4 Qe7 Rd1 h5 O-O h4 Qd3 g5 exd6 cxd6 Bxd6 Qxd6 Qxd6+ Bxd6 Rxd6 Be6 f4 Ke7 Rd4 gxf4 Rfxf4 h3 g4 Rac8 Kf2 Rc5 a4 Ra5 Bd1 b6 Kg3 Rh6 Rfe4 Kf8 Rd8+ Kg7 Ra8 Rc5 Rxa7 Bxc4 Rae7 Rhc6 R7e5 Rxe5 Rxe5 Bb3 Bxb3 Rxc3+ Kh4 Rxb3 Rb5 Ra3 Rxb6 Rxa4 Kxh3 f5 gxf5 Rf4 Rb5 Kf6 Kg3 Rxf5 Rxf5+ Kxf5 h4 Kg6 h5+ Kxh5"^^xsd:string ;
+    chess:openingPlayed chess:opening_English_Opening_Four_knights_system ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw_Insufficient_Material ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-23"^^xsd:date .
+
+chess:game_ef8f0861503659683fc22f79b9c22710 a chess:Game ;
+    chess:blackPlayer chess:player_Gukesh_D ;
+    chess:blackRating 2783.0 ;
+    chess:gameRound "4.1"^^xsd:string ;
+    chess:movesPlayed "Nf3 d5 e3 Nf6 b3 Bf5 Be2 h6 Ba3 Nbd7 O-O e6 Bxf8 Nxf8 c4 N8d7 Nc3 O-O cxd5 exd5 b4 c6 Nd4 Bh7 Qb3 Ne5 a4 Rc8 a5 b6 Nf3 Nxf3+ Bxf3 d4 Ne2 dxe3 dxe3 Be4 Rfd1 Qe7 Bxe4 Nxe4 axb6 axb6 Nc3 Rfd8 Nxe4 Qxe4 h3 c5 Rxd8+ Rxd8 bxc5 bxc5 Rc1 Qe5 Qc2 Rd5 g3 f5 Kg2 Kh7 Qc4 Qd6 e4 Re5 exf5 Rxf5 Qe4 Qd5 Qxd5 Rxd5 Kf3 Kg6 Ke4 Rd4+ Ke3 Rd5 Ke4 Rd4+ Ke3 Rd5 Ke4 Rd4+"^^xsd:string ;
+    chess:openingPlayed chess:opening_Reti_Opening ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2728.0 ;
+    schema:startDate "2024-11-29"^^xsd:date .
+
+chess:game_f50c584186c840410ef00040f3f89708 a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2795.0 ;
+    chess:gameRound "2.1"^^xsd:string ;
+    chess:movesPlayed "d4 Nf6 c4 e6 Nf3 d5 h3 dxc4 e3 c5 Bxc4 a6 O-O Nc6 Nc3 b5 Bd3 Bb7 a4 b4 Ne4 Na5 Nxf6+ gxf6 e4 c4 Bc2 Qc7 Bd2 Rg8 Rc1 O-O-O Bd3 Kb8 Re1 f5 Bc2 Nc6 Bg5 Rxg5 Nxg5 Nxd4 Qh5 f6 Nf3 Nxc2 Rxc2 Bxe4 Rd2 Bd6 Kh1 c3 bxc3 bxc3 Rd4 c2 Qh6 e5"^^xsd:string ;
+    chess:openingPlayed chess:opening_Queen_s_Pawn_Game_3_Nf3 ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "0-1"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Ding_Liren ;
+    chess:whiteRating 2788.0 ;
+    schema:startDate "2023-04-10"^^xsd:date .
+
+chess:game_f52ddd790a4d2a47d0b43e7f1264ceb7 a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2728.0 ;
+    chess:gameRound "5.1"^^xsd:string ;
+    chess:movesPlayed "e4 e6 d4 d5 exd5 exd5 Nf3 Nf6 Bd3 c5 c3 c4 Bc2 Bd6 Qe2+ Qe7 Qxe7+ Kxe7 O-O Re8 Re1+ Kf8 Rxe8+ Kxe8 Bg5 Nbd7 Nbd2 h6 Bh4 Nh5 Re1+ Kf8 g4 Nf4 Bg3 Nb6 g5 hxg5 Nxg5 Bd7 Ngf3 Re8 Ne5 Bxe5 dxe5 Nd3 Bxd3 cxd3 f3 Nc4 Nxc4 dxc4 Re4 Bc6 Rd4 Bxf3 Kf2 Bc6 Rxc4 Rd8 Rd4 Rxd4 cxd4 Bd5 b3 Ke7 Ke3 Ke6 Kxd3 g6 Kc3 a6 Kd3 Kf5 Ke3 Ke6 Kd3 Kf5 Ke3 Ke6"^^xsd:string ;
+    chess:openingPlayed chess:opening_French_Exchange_Variation ;
+    chess:playedAtEvent chess:event_WCh_2024 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Gukesh_D ;
+    chess:whiteRating 2783.0 ;
+    schema:startDate "2024-11-30"^^xsd:date .
+
+chess:game_f83d3d98465757f0c750827d16a55b9c a chess:Game ;
+    chess:blackPlayer chess:player_Ding_Liren ;
+    chess:blackRating 2788.0 ;
+    chess:gameRound "1.1"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Bxc6 dxc6 Re1 Nd7 d4 exd4 Qxd4 O-O Bf4 Nc5 Qe3 Bg4 Nd4 Qd7 Nc3 Rad8 Nf5 Ne6 Nxe7+ Qxe7 Bg3 Bh5 f3 f6 h3 h6 Kh2 Bf7 Rad1 b6 a3 a5 Ne2 Rxd1 Rxd1 Rd8 Rd3 c5 Qd2 c6 Rxd8+ Nxd8 Qf4 b5 Qb8 Kh7 Bd6 Qd7 Ng3 Ne6 f4 h5 c3 c4 h4 Qd8 Qb7 Be8 Nf5 Qd7 Qb8 Qd8 Qxd8 Nxd8 Nd4 Nb7 e5 Kg8 Kg3 Bd7 Bc7 Nc5 Bxa5 Kf7 Bb4 Nd3 e6+ Bxe6 Nxc6 Bd7 Nd4 Nxb2 Kf3 Nd3 g3 Nc1 Ke3"^^xsd:string ;
+    chess:openingPlayed chess:opening_Ruy_Lopez_Exchange_Variation_Doubly_Deferred_DERLD ;
+    chess:playedAtEvent chess:event_WCh_2023 ;
+    chess:result "1/2-1/2"^^xsd:string ;
+    chess:termination chess:termination_Draw ;
+    chess:whitePlayer chess:player_Nepomniachtchi_Ian ;
+    chess:whiteRating 2795.0 ;
+    schema:startDate "2023-04-09"^^xsd:date .
+
+chess:game_faf7d0fc38f529c5e910c8d18156095c a chess:Game ;
+    chess:blackPlayer chess:player_Nepomniachtchi_Ian ;
+    chess:blackRating 2782.0 ;
+    chess:gameRound "8"^^xsd:string ;
+    chess:movesPlayed "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Nd7 Nxd7 Bxd7 Nd2 Nxd2 Bxd2 Bd6 O-O h5 Qe1+ Kf8 Bb4 Qe7 Bxd6 Qxd6 Qd2 Re8 Rae1 Rh6 Qg5 c6 Rxe8+ Bxe8 Re1 Qf6 Qe3 Bd7 h3 h4 c4 dxc4 Bxc4 b5 Qa3+ Kg8 Qxa7 Qd8 Bb3 Rd6 Re4 Be6 Bxe6 Rxe6 Rxe6 fxe6 Qc5 Qa5 Qxc6 Qe1+ Kh2 Qxf2 Qxe6+ Kh7 Qe4+ Kg8 b3 Qxa2 Qe8+ Kh7 Qxb5 Qf2 Qe5 Qb2 Qe4+ Kg8 Qd3 Qf2 Qc3 Qf4+ Kg1 Kh7 Qd3+ g6 Qd1 Qe3+ Kh1 g5 d5 g4 hxg4 h3 Qf3"^^xsd:string ;
+    chess:openingPlayed chess:opening_Petrov_s_Defense_Steinitz_Modern_Attack ;
+    chess:playedAtEvent chess:event_WCh_2021 ;
+    chess:result "1-0"^^xsd:string ;
+    chess:termination chess:termination_Resignation ;
+    chess:whitePlayer chess:player_Carlsen_Magnus ;
+    chess:whiteRating 2855.0 ;
+    schema:startDate "2021-12-05"^^xsd:date .
+
+chess:eco_A06 a chess:EcoCode .
+
+chess:eco_A08 a chess:EcoCode .
+
+chess:eco_A09 a chess:EcoCode .
+
+chess:eco_A13 a chess:EcoCode .
+
+chess:eco_A21 a chess:EcoCode .
+
+chess:eco_A28 a chess:EcoCode .
+
+chess:eco_C01 a chess:EcoCode .
+
+chess:eco_C07 a chess:EcoCode .
+
+chess:eco_C11 a chess:EcoCode .
+
+chess:eco_C42 a chess:EcoCode .
+
+chess:eco_C43 a chess:EcoCode .
+
+chess:eco_C50 a chess:EcoCode .
+
+chess:eco_C65 a chess:EcoCode .
+
+chess:eco_C84 a chess:EcoCode .
+
+chess:eco_C85 a chess:EcoCode .
+
+chess:eco_C88 a chess:EcoCode .
+
+chess:eco_D02 a chess:EcoCode .
+
+chess:eco_D04 a chess:EcoCode .
+
+chess:eco_D35 a chess:EcoCode .
+
+chess:eco_D78 a chess:EcoCode .
+
+chess:eco_E00 a chess:EcoCode .
+
+chess:eco_E06 a chess:EcoCode .
+
+chess:eco_E10 a chess:EcoCode .
+
+chess:eco_E28 a chess:EcoCode .
+
+chess:eco_E46 a chess:EcoCode .
+
+chess:opening_Catalan_Closed_5_Nf3 a chess:Opening ;
+    chess:ecoCode chess:eco_E06 .
+
+chess:opening_French_Exchange_Variation a chess:Opening ;
+    chess:ecoCode chess:eco_C01 .
+
+chess:opening_French_Tarrasch_Open_Variation a chess:Opening ;
+    chess:ecoCode chess:eco_C07 .
+
+chess:opening_King_s_Indian_Attack_3_Bg2 a chess:Opening ;
+    chess:ecoCode chess:eco_A08 .
+
+chess:opening_King_s_Pawn_Game a chess:Opening ;
+    chess:ecoCode chess:eco_C50 .
+
+chess:opening_Neo_Grunfeld_6_O_O_c6 a chess:Opening ;
+    chess:ecoCode chess:eco_D78 .
+
+chess:opening_Nimzo_Indian_4_e3_O_O a chess:Opening ;
+    chess:ecoCode chess:eco_E46 .
+
+chess:opening_Nimzo_Indian_Saemisch_variation_6_e3 a chess:Opening ;
+    chess:ecoCode chess:eco_E28 .
+
+chess:opening_Petrov_s_Defense_Steinitz_Modern_Attack a chess:Opening ;
+    chess:ecoCode chess:eco_C43 .
+
+chess:opening_QGD_3_Nf6 a chess:Opening ;
+    chess:ecoCode chess:eco_D35 .
+
+chess:opening_Queen_s_Pawn_Game_3_Nf3 a chess:Opening ;
+    chess:ecoCode chess:eco_E10 .
+
+chess:opening_Reti_Opening a chess:Opening ;
+    chess:ecoCode chess:eco_A06 .
+
+chess:opening_Reti_Opening_without_2_c6_2_e6 a chess:Opening ;
+    chess:ecoCode chess:eco_A09 .
+
+chess:opening_Ruy_Lopez_Berlin_Defense a chess:Opening ;
+    chess:ecoCode chess:eco_C65 .
+
+chess:opening_Ruy_Lopez_Exchange_Variation_Doubly_Deferred_DERLD a chess:Opening ;
+    chess:ecoCode chess:eco_C85 .
+
+chess:opening_English_Opening_Four_knights_system a chess:Opening ;
+    chess:ecoCode chess:eco_A28 .
+
+chess:opening_French_Defense a chess:Opening ;
+    chess:ecoCode chess:eco_C11 .
+
+chess:opening_Petrov_s_Defense_Classical_Variation a chess:Opening ;
+    chess:ecoCode chess:eco_C42 .
+
+chess:opening_Queen_s_Pawn_Game a chess:Opening ;
+    chess:ecoCode chess:eco_D04,
+        chess:eco_E00 .
+
+chess:opening_English_Opening a chess:Opening ;
+    chess:ecoCode chess:eco_A13,
+        chess:eco_A21 .
+
+chess:opening_Ruy_Lopez_Closed_Defense a chess:Opening ;
+    chess:ecoCode chess:eco_C84 .
+
+chess:termination_Draw_Insufficient_Material a chess:Termination .
+
+chess:opening_Ruy_Lopez_Closed a chess:Opening ;
+    chess:ecoCode chess:eco_C88 .
+
+chess:opening_Queen_s_Pawn_Game_2_Nf3 a chess:Opening ;
+    chess:ecoCode chess:eco_D02 .
+
+chess:event_WCh_2021 a schema:Event ;
+    schema:location "Dubai UAE"^^xsd:string ;
+    schema:name "WCh" .
+
+chess:player_Carlsen_Magnus a chess:Player ;
+    chess:blitzRating 2869 ;
+    chess:federation "NOR"^^xsd:string ;
+    chess:fideId 1503014 ;
+    chess:gender "M"^^xsd:string ;
+    chess:rapidRating 2832 ;
+    chess:standardRating 2840 ;
+    chess:title "GM"^^xsd:string ;
+    schema:name "Carlsen, Magnus"^^xsd:string .
+
+chess:event_WCh_2024 a schema:Event ;
+    schema:location "Singapore SIN"^^xsd:string ;
+    schema:name "WCh" .
+
+chess:player_Gukesh_D a chess:Player ;
+    chess:blitzRating 2646 ;
+    chess:federation "IND"^^xsd:string ;
+    chess:fideId 46616543 ;
+    chess:gender "M"^^xsd:string ;
+    chess:rapidRating 2682 ;
+    chess:standardRating 2732 ;
+    chess:title "GM"^^xsd:string ;
+    schema:name "Gukesh D"^^xsd:string .
+
+chess:event_WCh_2023 a schema:Event ;
+    schema:location "Astana KAZ"^^xsd:string ;
+    schema:name "WCh" .
+
+chess:termination_Resignation a chess:Termination .
+
+chess:termination_Draw a chess:Termination .
+
+chess:player_Nepomniachtchi_Ian a chess:Player ;
+    chess:blitzRating 2765 ;
+    chess:federation "RUS"^^xsd:string ;
+    chess:fideId 4168119 ;
+    chess:gender "M"^^xsd:string ;
+    chess:rapidRating 2726 ;
+    chess:standardRating 2729 ;
+    chess:title "GM"^^xsd:string ;
+    schema:name "Nepomniachtchi, Ian"^^xsd:string .
+
+chess:player_Ding_Liren a chess:Player ;
+    chess:blitzRating 2757 ;
+    chess:federation "CHN"^^xsd:string ;
+    chess:fideId 8603677 ;
+    chess:gender "M"^^xsd:string ;
+    chess:rapidRating 2716 ;
+    chess:standardRating 2738 ;
+    chess:title "GM"^^xsd:string ;
+    schema:name "Ding, Liren"^^xsd:string .
+

@@ -61,7 +61,7 @@ chess:movesPlayed   a owl:DatatypeProperty ;
                     rdfs:domain chess:Game ;
                     rdfs:range  xsd:string .
 
-chess:fideID        a owl:DatatypeProperty ;
+chess:fideId        a owl:DatatypeProperty ;
                     rdfs:domain chess:Player ;
                     rdfs:range  xsd:integer .
 
@@ -69,10 +69,22 @@ chess:standardRating a owl:DatatypeProperty ;
                      rdfs:domain chess:Player ;
                      rdfs:range  xsd:integer .
 
+chess:rapidRating a owl:DatatypeProperty ;
+                  rdfs:domain chess:Player ;
+                  rdfs:range  xsd:integer .
+
+chess:blitzRating a owl:DatatypeProperty ;
+                  rdfs:domain chess:Player ;
+                  rdfs:range  xsd:integer .
+
 chess:federation a owl:DatatypeProperty ;
                  rdfs:domain chess:Player ;
                  rdfs:range  xsd:string .
 
 chess:title      a owl:DatatypeProperty ;
+                 rdfs:domain chess:Player ;
+                 rdfs:range  xsd:string .
+
+chess:gender     a owl:DatatypeProperty ;
                  rdfs:domain chess:Player ;
                  rdfs:range  xsd:string .

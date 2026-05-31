@@ -1,0 +1,290 @@
+@prefix chess: <https://ChessGameKG.org/> .
+@prefix schema: <https://schema.org/> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ════════════════════════════════════════════════════════════════════════════
+# SHACL Validation Shapes for ChessKG
+# ════════════════════════════════════════════════════════════════════════════
+
+# ── Game Shape ───────────────────────────────────────────────────────────────
+chess:GameShape
+    a sh:NodeShape ;
+    sh:targetClass chess:Game ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:whitePlayer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class chess:Player ;
+        sh:severity sh:Violation ;
+        sh:message "Every game must have exactly one white player"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:blackPlayer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class chess:Player ;
+        sh:severity sh:Violation ;
+        sh:message "Every game must have exactly one black player"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:whiteRating ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 500 ;
+        sh:maxInclusive 3500 ;
+        sh:severity sh:Violation ;
+        sh:message "White rating must be a decimal value between 500 and 3500"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:blackRating ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 500 ;
+        sh:maxInclusive 3500 ;
+        sh:severity sh:Violation ;
+        sh:message "Black rating must be a decimal value between 500 and 3500"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:result ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "1-0" "0-1" "1/2-1/2" ) ;
+        sh:severity sh:Violation ;
+        sh:message "Result must be one of: 1-0, 0-1, 1/2-1/2"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:gameRound ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Warning ;
+        sh:message "Game should have a round identifier"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:movesPlayed ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Violation ;
+        sh:message "Game must have recorded moves"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:openingPlayed ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class chess:Opening ;
+        sh:severity sh:Violation ;
+        sh:message "Game must have exactly one associated opening"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:termination ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class chess:Termination ;
+        sh:severity sh:Violation ;
+        sh:message "Game must have exactly one termination type"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:playedAtEvent ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class schema:Event ;
+        sh:severity sh:Violation ;
+        sh:message "Game must be linked to exactly one event"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path schema:startDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:severity sh:Violation ;
+        sh:message "Game must have a start date"@en
+    ] .
+
+# ── Player Shape ─────────────────────────────────────────────────────────────
+
+chess:PlayerShape
+    a sh:NodeShape ;
+    sh:targetClass chess:Player ;
+    sh:property [
+    a sh:PropertyShape ;
+    sh:path chess:fideId ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:integer ;
+    sh:minInclusive 100000 ;
+    sh:severity sh:Warning ;
+    sh:message "FIDE ID, if present, must be a valid positive integer"@en
+] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:standardRating ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 500 ;
+        sh:maxInclusive 3000 ;
+        sh:severity sh:Warning ;
+        sh:message "Standard rating must be between 500-3000 if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:rapidRating ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 500 ;
+        sh:maxInclusive 3000 ;
+        sh:severity sh:Info ;
+        sh:message "Rapid rating must be between 500-3000 if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:blitzRating ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 500 ;
+        sh:maxInclusive 3000 ;
+        sh:severity sh:Info ;
+        sh:message "Blitz rating must be between 500-3000 if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:federation ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Z]{2,3}$" ;
+        sh:severity sh:Warning ;
+        sh:message "Federation must be a 2-3 letter country code if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:title ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "GM" "IM" "FM" "CM" "WGM" "WIM" "WFM" "WCM" "Untitled" ) ;
+        sh:severity sh:Info ;
+        sh:message "Title must be a recognized chess title if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:gender ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "m" "f" "M" "F" "other" ) ;
+        sh:severity sh:Warning ;
+        sh:message "Gender must be m, f, or other if present"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path schema:name ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:severity sh:Info ;
+        sh:message "Player should have a display name"@en
+    ] .
+
+# ── Opening Shape ────────────────────────────────────────────────────────────
+
+chess:OpeningShape
+    a sh:NodeShape ;
+    sh:targetClass chess:Opening ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path chess:ecoCode ;
+        sh:minCount 1 ;
+        sh:class chess:EcoCode ;
+        sh:severity sh:Violation ;
+        sh:message "Opening must reference at least one ECO code"@en
+    ] .
+
+# ── Event Shape ──────────────────────────────────────────────────────────────
+
+chess:EventShape
+    a sh:NodeShape ;
+    sh:targetClass schema:Event ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path schema:name ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Event must have a name"@en
+    ] ;
+    sh:property [
+        a sh:PropertyShape ;
+        sh:path schema:location ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Info ;
+        sh:message "Event should have a location"@en
+    ] .
+
+# ════════════════════════════════════════════════════════════════════════════
+# SPARQL Constraints
+# ════════════════════════════════════════════════════════════════════════════
+
+# White and Black players must be different
+chess:DifferentPlayersConstraint
+    a sh:NodeShape ;
+    sh:targetClass chess:Game ;
+    sh:sparql [
+        sh:message "White and black players must be different"@en ;
+        sh:severity sh:Violation ;
+        sh:select """
+            PREFIX chess: <https://ChessGameKG.org/>
+            SELECT $this WHERE {
+                $this chess:whitePlayer ?white ;
+                      chess:blackPlayer ?black .
+                FILTER (?white = ?black)
+            }
+        """
+    ] .
+
+# Ratings must be 1500+ for tournament games
+chess:RatingConsistencyConstraint
+    a sh:NodeShape ;
+    sh:targetClass chess:Game ;
+    sh:sparql [
+        sh:message "Both player ratings should be 1500+ for FIDE-rated tournament games"@en ;
+        sh:severity sh:Warning ;
+        sh:select """
+            PREFIX chess: <https://ChessGameKG.org/>
+            SELECT $this WHERE {
+                $this chess:whiteRating ?wr ;
+                      chess:blackRating ?br .
+                FILTER (?wr < 1500 || ?br < 1500)
+            }
+        """
+    ] .
+
+# Each player must not share a FIDE ID with another player node
+chess:UniqueFideIdConstraint
+    a sh:NodeShape ;
+    sh:targetClass chess:Player ;
+    sh:sparql [
+        sh:message "This FIDE ID is shared by more than one player node"@en ;
+        sh:severity sh:Warning ;
+        sh:select """
+            PREFIX chess: <https://ChessGameKG.org/>
+            SELECT $this WHERE {
+                $this chess:fideId ?fid .
+                ?other chess:fideId ?fid .
+                FILTER ($this != ?other)
+            }
+        """
+    ] .

@@ -1,0 +1,26 @@
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170918 <http://www.w3.org/ns/shacl#conforms> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170918 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#ValidationReport> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170918 <http://rdf4j.org/schema/rdf4j#truncated> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170918 <http://www.w3.org/ns/shacl#result> _:a9a54c377ea647ae9d0a5e28ee9e5c38170919 .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#ValidationResult> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#focusNode> <https://ChessGameKG.org/event_Allemagne_Bundesliga_2003> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://rdf4j.org/shacl-extensions#shapesGraph> <http://rdf4j.org/schema/rdf4j#SHACLShapeGraph> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#resultPath> <https://schema.org/name> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#sourceConstraintComponent> <http://www.w3.org/ns/shacl#MaxCountConstraintComponent> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#resultSeverity> <http://www.w3.org/ns/shacl#Violation> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#resultMessage> "Event must have a name"@en .
+_:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 <http://www.w3.org/ns/shacl#message> "Event must have a name"@en .
+_:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 <http://www.w3.org/ns/shacl#severity> <http://www.w3.org/ns/shacl#Violation> .
+_:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#PropertyShape> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170919 <http://www.w3.org/ns/shacl#sourceShape> _:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 .
+_:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 <http://www.w3.org/ns/shacl#path> <https://schema.org/name> .
+_:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 <http://www.w3.org/ns/shacl#maxCount> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170918 <http://www.w3.org/ns/shacl#result> _:a9a54c377ea647ae9d0a5e28ee9e5c38170920 .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/shacl#ValidationResult> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#focusNode> <https://ChessGameKG.org/event_Sinquefield_Cup_10th_2023> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://rdf4j.org/shacl-extensions#shapesGraph> <http://rdf4j.org/schema/rdf4j#SHACLShapeGraph> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#resultPath> <https://schema.org/name> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#sourceConstraintComponent> <http://www.w3.org/ns/shacl#MaxCountConstraintComponent> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#resultSeverity> <http://www.w3.org/ns/shacl#Violation> .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#resultMessage> "Event must have a name"@en .
+_:a9a54c377ea647ae9d0a5e28ee9e5c38170920 <http://www.w3.org/ns/shacl#sourceShape> _:adae4606-d4f2-45ce-94b5-39d86cb7eedf-38 .

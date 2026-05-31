@@ -5,8 +5,6 @@
 
 # ── Inferred Player Classes ───────────────────────────────────────────────────
 
-# Player who wins with the same opening in ≥60% of their games using it
-chess:OpeningSpecialist     rdfs:subClassOf chess:Player .
 
 # Player with StandardRating ≥ 2650
 chess:ElitePlayer           rdfs:subClassOf chess:Player .
@@ -14,49 +12,67 @@ chess:ElitePlayer           rdfs:subClassOf chess:Player .
 # Player with StandardRating ≥ 2700 — subset of ElitePlayer
 chess:SuperGM               rdfs:subClassOf chess:ElitePlayer .
 
+# Player who wins with the same opening in 50% of their games using it, and have at least 10 game with it
+chess:OpeningSpecialist     rdfs:subClassOf chess:Player .
+
 # Top 5 players by StandardRating within their federation
 chess:FederationTopPlayer   rdfs:subClassOf chess:Player .
 
-# Win rate ≥ 55% across ≥ 50 games
-chess:ConsistentPlayer      rdfs:subClassOf chess:Player .
+# Player with a high percentage of decisive games (wins or losses) — few draws.
+# Proxy for sharp, aggressive, tactical playing style.
+# Rule: (wins + losses) / totalGames ≥ 70% across ≥ 50 games.
+chess:DecisivePlayer    rdfs:subClassOf chess:Player .
 
-# Win rate ≥ 40% in games where moveCount > 40
+# Player who excels in long games (> 40 full moves) — used as a proxy for endgame strength.
+# Endgame is defined as games lasting beyond 40 moves, where middlegame complexity
+# has resolved and technical endgame skill becomes the deciding factor.
+# Rule: score% (wins + 0.5 × draws) / totalLongGames ≥ 50% across ≥ 200 long games.
 chess:EndgameSpecialist     rdfs:subClassOf chess:Player .
 
-# Lower-titled (FM/CM/WFM/WIM) or untitled player who has beaten a GM or IM ≥ 3 times
+# Lower-titled (FM/CM/WFM/WIM) or untitled player who has beaten a GM or IM ≥ 3 times, and mopre than 50percent match record including weighted draws
 chess:Underdog rdfs:subClassOf chess:Player .
 
 
 # ── Inferred Properties ───────────────────────────────────────────────────────
 
-# Player A wins ≥ 50% of games against Player B (min 10 games played)
+# Player A achieves a strictly greater head-to-head score than 
+# Player B (min 10 games played).
+# Calculated as: (Wins + 0.5 * Draws) / Total Games > 0.60
 chess:dominates             a owl:ObjectProperty ;
                             rdfs:domain chess:Player ;
                             rdfs:range  chess:Player .
 
-# Two players with ≥ 20 games against each other, ≥ 50% drawn
-chess:rivals                a owl:SymmetricProperty ;
-                            rdfs:domain chess:Player ;
-                            rdfs:range  chess:Player .
+#Two players with at least 10 games, beaten each opther at leat once and win differnetce is less than or equl to 2
+chess:evenlyMatches a owl:SymmetricProperty ;
+    rdfs:comment "Indicates a highly competitive, volatile head-to-head history where both players have beaten each other at least once, but the absolute margin between their direct wins is 2 or fewer over at least 10 games."@en ;
+    rdfs:domain chess:Player ;
+    rdfs:range  chess:Player .
 
-# Opening a player reaches most frequently when playing as White
+# ── Preferred Openings (Derived Properties) ──────────────────
+# The opening a player plays most frequently as White (requires ≥30 White games and a unique top count).
 chess:preferredOpeningAsWhite a owl:ObjectProperty ;
-                            rdfs:domain chess:Player ;
-                            rdfs:range  chess:Opening .
+                              rdfs:domain chess:Player ;
+                              rdfs:range  chess:Opening .
 
-# Opening a player reaches most frequently when playing as Black
+# ── Preferred Openings (Derived Properties) ──────────────────
+
+chess:preferredOpeningAsWhite a owl:ObjectProperty ;
+                              rdfs:domain chess:Player ;
+                              rdfs:range  chess:Opening ;
+                              rdfs:comment "The opening this player chooses most frequently when playing as White. Calculated only if the player has at least 30 games as White and a single, unique top-counted opening (no ties allowed)." .
+
 chess:preferredOpeningAsBlack a owl:ObjectProperty ;
-                            rdfs:domain chess:Player ;
-                            rdfs:range  chess:Opening .
-
-# Opponent a player has faced the most — not the same as rivals
-# (e.g. domestic league opponents play often but aren't necessarily rivals)
-chess:mostPlayedAgainst     a owl:ObjectProperty ;
-                            rdfs:domain chess:Player ;
-                            rdfs:range  chess:Player .
-
+                              rdfs:domain chess:Player ;
+                              rdfs:range  chess:Opening ;
+                              rdfs:comment "The opening this player chooses most frequently when playing as Black. Calculated only if the player has at least 30 games as Black and a single, unique top-counted opening (no ties allowed)." .
 
 # Two players who share the same preferredOpeningAsWhite AND preferredOpeningAsBlack
 chess:stylesSimilarTo a owl:SymmetricProperty ;
                       rdfs:domain chess:Player ;
                       rdfs:range  chess:Player .
+
+
+# Player specializes a specific opening — produced by OpeningSpecialist CONSTRUCT rule
+chess:specializes a owl:ObjectProperty ;
+                  rdfs:domain chess:Player ;
+                  rdfs:range  chess:Opening .

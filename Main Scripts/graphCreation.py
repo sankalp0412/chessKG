@@ -9,8 +9,12 @@ import hashlib
 import requests
 import unicodedata
 import re
+from pathlib import Path
 
 CHESS = Namespace("https://ChessGameKG.org/")
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+# GAME_INSERT_LIMIT = 100
 
 store = SPARQLUpdateStore(
     query_endpoint="http://localhost:7200/repositories/ChessKG",
@@ -18,12 +22,13 @@ store = SPARQLUpdateStore(
     auth=("admin", "root"),
 )
 
-graph = Dataset(store=store)
+graph = Dataset()
 graph.bind("chess", CHESS)
 
 
 def getGames():
-    with open("AllGames_2000_2023_v2_2200ELO_Min_20kGamesPerYear.json", "r") as file:
+    games_path = PROJECT_ROOT / "WCSince21.json"
+    with games_path.open("r") as file:
         data = json.load(file)
 
     return data
@@ -42,8 +47,13 @@ def clean_uri(value: str) -> str:
 
 def createGraph():
     games: list[dict] = getGames()
+    output_ttl_path = PROJECT_ROOT / "chess_kg.ttl"
+    # if GAME_INSERT_LIMIT is not None:
+    #     games = games[:GAME_INSERT_LIMIT]
+    #     print(f"Processing {len(games)} games (limit={GAME_INSERT_LIMIT})")
 
-    with open("fideIds.json", "r") as f:
+    fide_ids_path = PROJECT_ROOT / "additionalDataScripts" / "fideIds.json"
+    with fide_ids_path.open("r") as f:
         fideData = json.load(f)
 
     try:
@@ -77,6 +87,24 @@ def createGraph():
             whiteFideRating = white_fide_data.get("standardRating")
             blackFideRating = black_fide_data.get("standardRating")
 
+            whiteFideName = white_fide_data.get("fideName")
+            blackFideName = black_fide_data.get("fideName")
+
+            whiteFederation = white_fide_data.get("federation")
+            blackFederation = black_fide_data.get("federation")
+
+            whiteGender = white_fide_data.get("gender")
+            blackGender = black_fide_data.get("gender")
+
+            whiteTitle = white_fide_data.get("title")
+            blackTitle = black_fide_data.get("title")
+
+            whiteRapidRating = white_fide_data.get("rapid")
+            blackRapidRating = black_fide_data.get("rapid")
+
+            whiteBlitzRating = white_fide_data.get("blitz")
+            blackBlitzRating = black_fide_data.get("blitz")
+
             game_id = hashlib.md5(
                 f"{event_name}_{date}_{white_name}_{black_name}_{game_round}".encode(
                     "utf-8"
@@ -87,8 +115,10 @@ def createGraph():
 
             # Convert strings -> URIs (spaces replaced with underscores)
             event_uri = CHESS[f"event_{clean_uri(event_name)}_{date[:4]}"]
-            white_uri = CHESS[f"player_{clean_uri(white_name)}"]
-            black_uri = CHESS[f"player_{clean_uri(black_name)}"]
+            white_player_key = whiteFideName if whiteFideName else white_name
+            black_player_key = blackFideName if blackFideName else black_name
+            white_uri = CHESS[f"player_{clean_uri(white_player_key)}"]
+            black_uri = CHESS[f"player_{clean_uri(black_player_key)}"]
             eco_code_uri = CHESS[f"eco_{clean_uri(eco_code)}"]
             opening_uri = CHESS[f"opening_{clean_uri(opening)}"]
             termination_uri = CHESS[f"termination_{clean_uri(termination)}"]
@@ -109,27 +139,18 @@ def createGraph():
             graph.add((game_uri, CHESS.playedAtEvent, event_uri))
 
             # Player
-
             graph.add((white_uri, RDF.type, CHESS.Player))
             graph.add((black_uri, RDF.type, CHESS.Player))
 
+            # White player properties
             if whiteFideId is not None:
                 graph.add(
                     (
                         white_uri,
-                        CHESS.fideID,
+                        CHESS.fideId,
                         Literal(whiteFideId, datatype=XSD.integer),
                     )
                 )
-            if blackFideId is not None:
-                graph.add(
-                    (
-                        black_uri,
-                        CHESS.fideID,
-                        Literal(blackFideId, datatype=XSD.integer),
-                    )
-                )
-
             if whiteFideRating is not None:
                 graph.add(
                     (
@@ -138,12 +159,104 @@ def createGraph():
                         Literal(whiteFideRating, datatype=XSD.integer),
                     )
                 )
+            if whiteRapidRating is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        CHESS.rapidRating,
+                        Literal(whiteRapidRating, datatype=XSD.integer),
+                    )
+                )
+            if whiteBlitzRating is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        CHESS.blitzRating,
+                        Literal(whiteBlitzRating, datatype=XSD.integer),
+                    )
+                )
+            if whiteTitle is not None:
+                graph.add(
+                    (white_uri, CHESS.title, Literal(whiteTitle, datatype=XSD.string))
+                )
+            if whiteFederation is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        CHESS.federation,
+                        Literal(whiteFederation, datatype=XSD.string),
+                    )
+                )
+            if whiteGender is not None:
+                graph.add(
+                    (white_uri, CHESS.gender, Literal(whiteGender, datatype=XSD.string))
+                )
+
+            if whiteFideName is not None:
+                graph.add(
+                    (
+                        white_uri,
+                        SDO.name,
+                        Literal(whiteFideName, datatype=XSD.string),
+                    )
+                )
+
+            # Black player properties (same pattern)
+
             if blackFideRating is not None:
                 graph.add(
                     (
                         black_uri,
                         CHESS.standardRating,
                         Literal(blackFideRating, datatype=XSD.integer),
+                    )
+                )
+            if blackRapidRating is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.rapidRating,
+                        Literal(blackRapidRating, datatype=XSD.integer),
+                    )
+                )
+            if blackBlitzRating is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.blitzRating,
+                        Literal(blackBlitzRating, datatype=XSD.integer),
+                    )
+                )
+            if blackTitle is not None:
+                graph.add(
+                    (black_uri, CHESS.title, Literal(blackTitle, datatype=XSD.string))
+                )
+            if blackFederation is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.federation,
+                        Literal(blackFederation, datatype=XSD.string),
+                    )
+                )
+            if blackGender is not None:
+                graph.add(
+                    (black_uri, CHESS.gender, Literal(blackGender, datatype=XSD.string))
+                )
+            if blackFideName is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        SDO.name,
+                        Literal(blackFideName, datatype=XSD.string),
+                    )
+                )
+            if blackFideId is not None:
+                graph.add(
+                    (
+                        black_uri,
+                        CHESS.fideId,
+                        Literal(blackFideId, datatype=XSD.integer),
                     )
                 )
 
@@ -195,14 +308,15 @@ def createGraph():
             graph.add(
                 (game_uri, CHESS.movesPlayed, Literal(moves, datatype=XSD.string))
             )
-        graph.serialize("chess_kg.ttl", format="turtle")
-        print(f"Serialized {len(graph)} triples to chess_kg.ttl")
+        graph.serialize(str(output_ttl_path), format="turtle")
+        print(f"Serialized {len(graph)} triples to {output_ttl_path}")
 
     except Exception as e:
         print(f"Error: {e}")
+        return
 
     try:
-        with open("chess_kg.ttl", "rb") as f:
+        with output_ttl_path.open("rb") as f:
             response = requests.post(
                 "http://localhost:7200/repositories/ChessKG/statements",
                 headers={"Content-Type": "text/turtle"},
