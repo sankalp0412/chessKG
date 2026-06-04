@@ -1,13 +1,30 @@
-from rdfpandas.graph import to_dataframe
 import pandas as pd
-import rdflib
-from pathlib import Path
+from pykeen.triples import TriplesFactory
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
+# # Load and clean
+# df = pd.read_csv("chesskg_triples.tsv", sep="\t", header=0, names=["h", "r", "t"])
+# df = df.apply(lambda col: col.str.strip("<>"))
 
-# g = rdflib.Graph()
+# # Save cleaned version
+# df.to_csv("chesskg_triples_clean.tsv", sep="\t", index=False, header=False)
 
-# g.parse(
-#     "/../TTl Files Graph/TTl Files Graph/All_Ontology_and_SHACL.trig", format="trig"
-# )
+# Load into PyKEEN
+tf = TriplesFactory.from_path("chesskg_triples_clean.tsv")
+
+
+# Split
+training, testing, validation = tf.split([0.8, 0.1, 0.1], random_state=42)
+
+# Train TransE
+from pykeen.pipeline import pipeline
+
+result = pipeline(
+    training=training,
+    testing=testing,
+    validation=validation,
+    model="TransE",
+    epochs=5,
+    random_seed=42,
+)
+
+print(result.metric_results.to_df())
