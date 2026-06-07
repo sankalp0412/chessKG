@@ -1,0 +1,198 @@
+@prefix chess:  <https://ChessGameKG.org/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+# =============================================================================
+# ── Classes ──────────────────────────────────────────────────────────────────
+# =============================================================================
+
+chess:Game              a owl:Class .
+chess:Player            a owl:Class ;
+                        rdfs:subClassOf schema:Person .
+chess:Opening           a owl:Class .
+chess:EcoCode           a owl:Class .
+chess:Termination       a owl:Class .
+schema:Person           a owl:Class .
+schema:Event            a owl:Class .
+
+# ── Inferred Player Sub-Classes ──────────────────────────────────────────────
+
+chess:ElitePlayer           a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "A player with a Standard Rating >= 2650." .
+
+chess:SuperGM               a owl:Class ;
+                            rdfs:subClassOf chess:ElitePlayer ;
+                            rdfs:comment "A player with a Standard Rating >= 2700. Subset of ElitePlayer." .
+
+chess:OpeningSpecialist     a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "A player who wins with the same opening in >= 50% of their games using it, with a minimum of 10 games played with that opening." .
+
+chess:FederationTopPlayer   a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "A player who ranks in the top 5 by Standard Rating within their respective country's chess federation." .
+
+chess:DecisivePlayer        a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "Proxy for a sharp, aggressive, tactical playing style. Calculated as (wins + losses) / totalGames >= 70% across at least 50 games (very few draws)." .
+
+chess:EndgameSpecialist     a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "Proxy for technical endgame strength. Excels in long games (> 40 moves) with a scoring percentage (wins + 0.5 * draws) / totalLongGames >= 50% across at least 200 long games." .
+
+chess:Underdog              a owl:Class ;
+                            rdfs:subClassOf chess:Player ;
+                            rdfs:comment "A lower-titled (FM/CM/WFM/WIM) or untitled player who has beaten a GM or IM at least 3 times, with a > 50% match record including weighted draws." .
+
+
+# =============================================================================
+# ── Object Properties (Links between nodes) ──────────────────────────────────
+# =============================================================================
+
+# ── Base Game Connections ────────────────────────────────────────────────────
+
+chess:whitePlayer       a owl:ObjectProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  chess:Player .
+
+chess:blackPlayer       a owl:ObjectProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  chess:Player .
+
+chess:openingPlayed     a owl:ObjectProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  chess:Opening .
+
+chess:termination       a owl:ObjectProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  chess:Termination .
+
+chess:ecoCode           a owl:ObjectProperty ;
+                        rdfs:domain chess:Opening ;
+                        rdfs:range  chess:EcoCode .
+
+chess:playedAtEvent     a owl:ObjectProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  schema:Event .
+
+# ── Inferred Player-to-Player History ────────────────────────────────────────
+
+chess:dominates         a owl:ObjectProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  chess:Player ;
+                        rdfs:comment "Player A achieves a strictly greater head-to-head score than Player B over a minimum of 10 games. (Wins + 0.5 * Draws) / Total Games > 0.60." .
+
+chess:evenlyMatches     a owl:SymmetricProperty, owl:ObjectProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  chess:Player ;
+                        rdfs:comment "Indicates a highly competitive head-to-head history where both players have beaten each other at least once, but the absolute win margin difference is <= 2 over at least 10 games." .
+
+chess:mostPlayedAgainst a owl:ObjectProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  chess:Player ;
+                        rdfs:comment "Links a player to the opponent they have faced the most times in the dataset." .
+
+# ── Player Opening Preferences & Styles ──────────────────────────────────────
+
+chess:preferredOpeningAsWhite a owl:ObjectProperty ;
+                              rdfs:domain chess:Player ;
+                              rdfs:range  chess:Opening ;
+                              rdfs:comment "The opening this player chooses most frequently when playing as White. Requires >= 30 games as White and a single, unique top-counted opening." .
+
+chess:preferredOpeningAsBlack a owl:ObjectProperty ;
+                              rdfs:domain chess:Player ;
+                              rdfs:range  chess:Opening ;
+                              rdfs:comment "The opening this player chooses most frequently when playing as Black. Requires >= 30 games as Black and a single, unique top-counted opening." .
+
+chess:stylesSimilarTo       a owl:SymmetricProperty, owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Player ;
+                            rdfs:comment "Two players who share the exact same preferredOpeningAsWhite AND preferredOpeningAsBlack." .
+
+chess:specializes           a owl:ObjectProperty ;
+                            rdfs:domain chess:Player ;
+                            rdfs:range  chess:Opening ;
+                            rdfs:comment "Links an OpeningSpecialist player to the specific chess opening they specialize in." .
+
+
+# =============================================================================
+# ── Datatype Properties (Literal Values) ─────────────────────────────────────
+# =============================================================================
+
+# ── Game Attributes ──────────────────────────────────────────────────────────
+
+chess:movesPlayed       a owl:DatatypeProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "A space-separated literal text string detailing the exact moves played (e.g., 'e4 e5 Nf3 Nc6')." .
+
+chess:result            a owl:DatatypeProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "The outcome of the game. Typically formatted strictly as '1-0' (White won), '0-1' (Black won), or '1/2-1/2' (Draw)." .
+
+chess:gameRound         a owl:DatatypeProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  xsd:string .
+
+chess:whiteRating       a owl:DatatypeProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  xsd:integer ;
+                        rdfs:comment "The Elo rating of the white player at the exact time this specific game was played." .
+
+chess:blackRating       a owl:DatatypeProperty ;
+                        rdfs:domain chess:Game ;
+                        rdfs:range  xsd:integer ;
+                        rdfs:comment "The Elo rating of the black player at the exact time this specific game was played." .
+
+# ── Player Biographies & Current Ratings ────────────────────────────────────
+
+chess:fideId            a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:integer .
+
+chess:standardRating    a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:integer ;
+                        rdfs:comment "The player's official, current FIDE standard classical chess rating." .
+
+chess:rapidRating       a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:integer .
+
+chess:blitzRating       a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:integer .
+
+chess:federation        a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "The 3-letter country code association the player represents (e.g., 'USA', 'FRA', 'IND')." .
+
+chess:title             a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "The official FIDE title held by the player (e.g., 'GM', 'IM', 'FM', 'WGM')." .
+
+chess:gender            a owl:DatatypeProperty ;
+                        rdfs:domain chess:Player ;
+                        rdfs:range  xsd:string .
+
+# ── Schema.org Standard Properties ───────────────────────────────────────────
+
+schema:name             a owl:DatatypeProperty ;
+                        rdfs:domain owl:Thing ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "The readable string name given to any node, such as a Player's full name or an Opening's full title." .
+
+schema:location         a owl:DatatypeProperty ;
+                        rdfs:domain schema:Event ;
+                        rdfs:range  xsd:string ;
+                        rdfs:comment "The city or country venue where a specific chess tournament event occurred." .
+
+schema:startDate        a owl:DatatypeProperty ;
+                        rdfs:domain schema:Event ;
+                        rdfs:range  xsd:string .
