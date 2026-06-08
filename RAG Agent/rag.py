@@ -6,31 +6,16 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from prompts import custom_sparql_prompt, qa_prompt
 
-# Suppress deprecation warning for langchain-community (Ontotext integration not yet migrated to standalone packages)
 warnings.filterwarnings(
     "ignore", category=DeprecationWarning, module="langchain_community"
 )
 
-# OntotextGraphDBGraph and OntotextGraphDBQAChain are still in langchain-community
-# until official standalone integration is released
 from langchain_community.graphs import OntotextGraphDBGraph
 from langchain_community.chains.graph_qa.ontotext_graphdb import OntotextGraphDBQAChain
-
-# from langchain.chains
-load_dotenv()
-HYPERBOLIC_API_KEY = os.getenv("HYPERBOLIC_API_KEY")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+from llms import llm_hyperbolic_llama_3_70b, llmGroq_gpt_oss_20b
 
 
-def main():
-
-    llm = ChatOpenAI(
-        openai_api_key=HYPERBOLIC_API_KEY,
-        openai_api_base="https://api.hyperbolic.xyz/v1",
-        model_name="meta-llama/Llama-3.3-70B-Instruct",
-    )
-
-    llmGroq = ChatGroq(model_name="openai/gpt-oss-20b", temperature=0.7)
+def get_graph_db_chain() -> OntotextGraphDBQAChain:
 
     graph = OntotextGraphDBGraph(
         query_endpoint="http://localhost:7200/repositories/ChessKG",
@@ -38,19 +23,26 @@ def main():
         local_file_format="turtle",
     )
     chain = OntotextGraphDBQAChain.from_llm(
-        llm=llmGroq,
+        llm=llmGroq_gpt_oss_20b,
         graph=graph,
         allow_dangerous_requests=True,
         verbose=True,
         qa_prompt=qa_prompt,
-        # sparql_generation_prompt=custom_sparql_prompt,
+        sparql_generation_prompt=custom_sparql_prompt,
     )
+    return chain
+
+
+def main(question):
+
+    chain = get_graph_db_chain()
     # print(graph.get_schema)
-    result = chain.invoke(
-        "For players with rating >= 2700, find their preferred opening as white and calculate their win percentage with that opening."
-    )
+    result = chain.invoke(question)
     print(result["result"])
 
 
 if __name__ == "__main__":
-    main()
+    question = """
+    For players with rating >= 2700, find their preferred opening as white and calculate their win percentage with that opening.
+    """
+    main(question)
