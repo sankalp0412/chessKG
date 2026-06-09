@@ -1,0 +1,28 @@
+name: Monthly Ratings Update
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 1st of every month at midnight
+  workflow_dispatch:       # allows manual trigger from GitHub UI
+
+jobs:
+  update-ratings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests SPARQLWrapper tqdm
+
+      - name: Run ratings update
+        env:
+          GRAPHDB_ENDPOINT: ${{ secrets.GRAPHDB_ENDPOINT }}
+          GRAPHDB_UPDATE: ${{ secrets.GRAPHDB_UPDATE }}
+        run: python additionalDataScripts/evolution.py
