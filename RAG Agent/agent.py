@@ -29,7 +29,7 @@ embeddings_real = np.concatenate([embeddings.real, embeddings.imag], axis=1).ast
 
 
 @tool
-def search_similar_entities(entity_name: str) -> str:
+def search_similar_entities(entity_name: str, entity_type: str = "") -> str:
     """Search for similar players or openings in the chess knowledge graph using embedding similarity.
     Use this for questions about similarity, style, recommendations, or clustering.
 
@@ -37,11 +37,16 @@ def search_similar_entities(entity_name: str) -> str:
     For players: pass the last name only (e.g., 'Carlsen', 'Nakamura', 'Nepomniachtchi')
     For openings: pass a keyword from the opening name (e.g., 'Sicilian', 'English', 'Caro')
     URIs are formatted as player_LastName_FirstName or opening_Name_Variation.
+
+    Args:
+        entity_name: partial name to search
+        entity_type: optional filter — pass 'player_' for players, 'opening_' for openings.
+                     Leave empty to search all entity types.
     """
     matches = [
         (uri, idx)
         for uri, idx in entity_to_id.items()
-        if entity_name.lower() in uri.lower()
+        if entity_type.lower() in uri.lower() and entity_name.lower() in uri.lower()
     ]
     if not matches:
         return f"Entity '{entity_name}' not found."

@@ -40,6 +40,10 @@ chess:playedAtEvent a owl:ObjectProperty ;
                     rdfs:domain chess:Game ;
                     rdfs:range  schema:Event .
 
+schema:name a owl:DatatypeProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:range  xsd:string .
+
 # ── Datatype Properties (node → literal value) ───────
 chess:whiteRating   a owl:DatatypeProperty ;
                     rdfs:domain chess:Game ;

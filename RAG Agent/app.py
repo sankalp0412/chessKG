@@ -143,9 +143,7 @@ with st.sidebar:
         "- Try: *Does X dominate Y in head-to-head games?*\n"
         "- Try: *What is Hikaru's preferred opening as black?*"
     )
-    st.markdown("### Analysis Board")
     st.markdown(
-        "<div class='graph-label'>Analyzing Position</div>"
         "<div class='piece-carousel'>"
         "<span class='rotating-piece'>♞</span>"
         "<span class='piece-pulse'>♗</span>"

@@ -2,7 +2,7 @@ import requests
 
 
 def main():
-    with open("extended-ontology.ttl", "rb") as f:
+    with open("ontology.ttl", "rb") as f:
         response = requests.post(
             "http://localhost:7200/repositories/ChessKG/statements",
             headers={"Content-Type": "text/turtle"},

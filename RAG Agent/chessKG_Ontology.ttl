@@ -78,6 +78,13 @@ chess:playedAtEvent     a owl:ObjectProperty ;
                         rdfs:domain chess:Game ;
                         rdfs:range  schema:Event .
 
+# schema:name is used for human-readable names on Player, Opening, and Event nodes.
+# NOTE: EcoCode, Termination, and Game nodes do NOT have schema:name.
+schema:name a owl:DatatypeProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:range  xsd:string .
+
+
 # ── Inferred Player-to-Player History ────────────────────────────────────────
 
 chess:dominates         a owl:ObjectProperty ;
