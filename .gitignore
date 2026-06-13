@@ -21,3 +21,4 @@ TTl Files Graph/
 *.tsv
 *.index
 *.npy
+*.pem

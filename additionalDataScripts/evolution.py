@@ -4,11 +4,16 @@ from SPARQLWrapper import SPARQLWrapper, JSON, POST
 import time
 import requests
 from typing import Dict
+import os
 
-SPARQL_ENDPOINT = "http://localhost:7200/repositories/ChessKG"
-SPARQL_UPDATE = "http://localhost:7200/repositories/ChessKG/statements"
-
+SPARQL_ENDPOINT = os.getenv(
+    "GRAPHDB_ENDPOINT", "http://localhost:7200/repositories/ChessKG"
+)
+SPARQL_UPDATE = os.getenv(
+    "GRAPHDB_UPDATE", "http://localhost:7200/repositories/ChessKG/statements"
+)
 sparql = SPARQLWrapper(endpoint=SPARQL_ENDPOINT, returnFormat=JSON)
+print(f"Using endpoint: {SPARQL_ENDPOINT}")
 
 
 def fetch_all_players_fide_id() -> list[str]:
