@@ -5,6 +5,7 @@ import time
 import requests
 from typing import Dict
 import os
+import streamlit as st
 
 SPARQL_ENDPOINT = os.getenv(
     "GRAPHDB_ENDPOINT", "http://localhost:7200/repositories/ChessKG"
@@ -12,8 +13,7 @@ SPARQL_ENDPOINT = os.getenv(
 SPARQL_UPDATE = os.getenv(
     "GRAPHDB_UPDATE", "http://localhost:7200/repositories/ChessKG/statements"
 )
-sparql = SPARQLWrapper(endpoint=SPARQL_ENDPOINT, returnFormat=JSON)
-print(f"Using endpoint: {SPARQL_ENDPOINT}")
+sparql = SPARQLWrapper(endpoint="SPARQL_ENDPOINT", returnFormat=JSON)
 
 
 def fetch_all_players_fide_id() -> list[str]:

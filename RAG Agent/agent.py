@@ -1,3 +1,5 @@
+import tempfile
+
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from langchain.tools import tool
 from rag import get_graph_db_chain
@@ -11,6 +13,8 @@ import requests
 from dotenv import load_dotenv
 import os
 from prompts import agent_prompt
+import boto3
+import streamlit as st
 
 load_dotenv()
 
@@ -18,17 +22,9 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGSMITH_API_KEY"] = os.getenv("LANGSMITH_API_KEY")
 os.environ["LANGCHAIN_PROJECT"] = "ChessKG"
 
-index = faiss.read_index("../Embeddings/chesskg.index")
-with open("../Embeddings/entity_to_id.json") as f:
-    entity_to_id = json.load(f)
-id_to_entity = {str(v): k for k, v in entity_to_id.items()}
-embeddings = np.load("../Embeddings/entity_embeddings.npy")
-embeddings_real = np.concatenate([embeddings.real, embeddings.imag], axis=1).astype(
-    "float32"
-)
-
 
 @tool
+@st.cache_resource
 def search_similar_entities(entity_name: str, entity_type: str = "") -> str:
     """Search for similar players or openings in the chess knowledge graph using embedding similarity.
     Use this for questions about similarity, style, recommendations, or clustering.
@@ -43,6 +39,28 @@ def search_similar_entities(entity_name: str, entity_type: str = "") -> str:
         entity_type: optional filter — pass 'player_' for players, 'opening_' for openings.
                      Leave empty to search all entity types.
     """
+    s3 = boto3.client("s3")
+    bucket = os.getenv("S3_BUCKET", "chesskg")
+
+    # entity_to_id — load directly into memory
+    obj = s3.get_object(Bucket=bucket, Key="entity_to_id.json")
+    entity_to_id = json.load(obj["Body"])
+    id_to_entity = {str(v): k for k, v in entity_to_id.items()}
+
+    with tempfile.NamedTemporaryFile(suffix=".npy", delete=False) as tmp:
+        s3.download_fileobj(bucket, "entity_embeddings.npy", tmp)
+        embeddings_path = tmp.name
+    embeddings = np.load(embeddings_path)
+    embeddings_real = np.concatenate([embeddings.real, embeddings.imag], axis=1).astype(
+        "float32"
+    )
+
+    # FAISS index — download to temp file
+    with tempfile.NamedTemporaryFile(suffix=".index", delete=False) as tmp:
+        s3.download_fileobj(bucket, "chesskg.index", tmp)
+        index_path = tmp.name
+    index = faiss.read_index(index_path)
+
     matches = [
         (uri, idx)
         for uri, idx in entity_to_id.items()
@@ -73,10 +91,11 @@ def search_similar_entities(entity_name: str, entity_type: str = "") -> str:
             else:
                 name = tail.replace("_", " ")
             results.append(name)
-    return f"Entities most similar to {entity_name}: {', '.join(results)}"
+    return f"Entities most similar to {entity_name}: {'; '.join(results)}"
 
 
 @tool
+@st.cache_resource
 def query_chess_graph(question: str) -> str:
     """Query the chess knowledge graph for factual information about players, games, openings,
     ratings, results, tournaments. Use for specific facts and statistics."""
@@ -85,6 +104,7 @@ def query_chess_graph(question: str) -> str:
 
 
 @tool
+@st.cache_resource
 def get_latest_ratings(player_name: str) -> list[Dict] | Dict:
     """Fetches the latest FIDE ratings for a player from the Lichess FIDE API.
 
