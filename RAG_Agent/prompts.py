@@ -25,6 +25,11 @@ PLAYER IDENTIFIERS & NAMES:
 - Player URIs are formatted as: https://ChessGameKG.org/player_FirstName_LastName (e.g., player_Anand_Viswanathan, player_Nakamura_Hikaru)
 - Player name property (schema:name) stores names as "LastName, FirstName" (e.g., "Nakamura, Hikaru", "Anand, Viswanathan")
 - Use substring matching to fetch player based on part of their names
+- Use these prefixes (or others if required) before running the actual query:
+    PREFIX chess: <https://ChessGameKG.org/>
+    PREFIX schema: <https://schema.org/>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 Strictly Do not include any text except the SPARQL query generated. Dont use backtics for the query 
 
