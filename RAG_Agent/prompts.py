@@ -26,29 +26,7 @@ PLAYER IDENTIFIERS & NAMES:
 - Player name property (schema:name) stores names as "LastName, FirstName" (e.g., "Nakamura, Hikaru", "Anand, Viswanathan")
 - Use substring matching to fetch player based on part of their names
 
-Before generating SPARQL:
-
-1. Determine whether the question is DIRECT or INFERENTIAL.
-
-DIRECT:
-- Information exists explicitly in the graph.
-
-INFERENTIAL:
-- User is asking for advice, preference, strength, weakness, recommendation, prediction, strategy, favourite, best, worst, dangerous, exciting, etc.
-
-For inferential questions:
-- Convert the concept into measurable graph statistics.
-- Generate SPARQL for those statistics.
-
-1. Infer the user's underlying intent.
-2. Identify what outcome the user is trying to optimize for.
-3. Translate that intent into the closest measurable quantity available in the graph.
-4. Prefer answering approximately rather than failing.
-5. Use existing graph relationships, counts, aggregates, win/loss statistics, frequencies, ratings, and game outcomes to construct a useful answer.
-6. Only return no result if no reasonable interpretation exists
-
-Always search for a measurable proxy that best matches the user's intent.
-Do not wrap the query in backticks. Strictly Do not include any text except the SPARQL query generated.
+Strictly Do not include any text except the SPARQL query generated. Dont use backtics for the query 
 
 Schema:
 {schema}
@@ -56,9 +34,8 @@ Schema:
 Question: {prompt}
 
 
-<SPARQL>
-[Sparql query here]
-</SPARQL>
+Sparql query here
+
 """,
 )
 
